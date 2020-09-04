@@ -1,0 +1,4 @@
+- git:
+    local-name: src/romea_common
+    uri: git@gitlab-ssh.irstea.fr:romea-ve/core/romea_common.git
+
