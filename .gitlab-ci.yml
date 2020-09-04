@@ -28,7 +28,7 @@ kinetic:
   stage: build
   script:
       - catkin build --no-status --force-color
-      - catkin run_tests --no-status --force-color --no-deps
+      - catkin run_tests romea_gps --no-status --force-color --no-deps
 
 # melodic
 melodic:
@@ -36,7 +36,7 @@ melodic:
   stage: build
   script:
     - catkin build --summarize --no-status --force-color
-    - catkin run_tests --no-status --force-color --no-deps
+    - catkin run_tests romea_gps --no-status --force-color --no-deps
 
 # noetic
 noetic_catkin_build:
@@ -44,5 +44,5 @@ noetic_catkin_build:
   stage: build
   script:
     - catkin build --summarize --no-status --force-color
-    - catkin run_tests --no-status --force-color --no-deps
+    - catkin run_tests romea_gps --no-status --force-color --no-deps
 
