@@ -45,5 +45,5 @@ noetic_catkin_build:
   stage: build
   script:
     - catkin build --summarize --no-status --force-color
-    - catkin run_tests --no-status --force-color
+    - catkin run_tests --no-status --force-color 
 
