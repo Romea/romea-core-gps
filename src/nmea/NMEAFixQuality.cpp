@@ -11,31 +11,31 @@ std::string description(const FixQuality & fixQuality)
 {
   switch (fixQuality) {
   case FixQuality::INVALID_FIX:
-    return "Invalid fix : 0";
+    return "invalid fix (0)";
     break;
   case FixQuality::GPS_FIX:
-    return "Gps fix : 1";
+    return "gps fix (1)";
     break;
   case FixQuality::DGPS_FIX:
-    return "Dgps fix : 2";
+    return "dgps fix (2)";
     break;
   case FixQuality::PPS_FIX:
-    return "PPS fix : 3";
+    return "pps fix (3)";
     break;
   case FixQuality::RTK_FIX:
-    return "Rtk fix : 4";
+    return "rtk fix (4)";
     break;
   case FixQuality::FLOAT_RTK_FIX:
-    return "Float rtk fix : 5";
+    return "float rtk fix (5)";
     break;
   case FixQuality::ESTIMATED_FIX:
-    return "Estimated fix : 6";
+    return "estimated fix (6)";
     break;
   case FixQuality::MANUAL_FIX:
-    return "Manual fix : 7";
+    return "manual fix (7)";
     break;
   case FixQuality::SIMULATION_FIX:
-    return "Simulation fix : 8";
+    return "simulation fix (8)";
     break;
   default:
     return "Unknown fix";
@@ -109,6 +109,12 @@ FixQuality modeIndicatorToFixQuality(const std::string &modeIndicator)
     return FixQuality::INVALID_FIX;
     break;
   };
+}
+
+//-----------------------------------------------------------------------------
+std::ostream& operator<<(std::ostream & os,const FixQuality & FixQuality)
+{
+  os<<description(FixQuality);
 }
 
 

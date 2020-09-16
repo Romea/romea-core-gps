@@ -277,12 +277,35 @@ TEST(TestGPS, testSattellitesInView)
   }
 }
 
+TEST(TestGPS, testFixQualityToDescription)
+{
+  EXPECT_STREQ(romea::description(romea::FixQuality::INVALID_FIX).c_str(),"invalid fix (0)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::GPS_FIX).c_str(),"gps fix (1)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::DGPS_FIX).c_str(),"dgps fix (2)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::PPS_FIX).c_str(),"pps fix (3)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::RTK_FIX).c_str(),"rtk fix (4)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::FLOAT_RTK_FIX).c_str(),"float rtk fix (5)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::ESTIMATED_FIX).c_str(),"estimated fix (6)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::MANUAL_FIX).c_str(),"manual fix (7)");
+  EXPECT_STREQ(romea::description(romea::FixQuality::SIMULATION_FIX).c_str(),"simulation fix (8)");
+}
+
 TEST(TestGPS, testFixQualityComparison)
 {
   EXPECT_TRUE(romea::FixQuality::RTK_FIX>=romea::FixQuality::FLOAT_RTK_FIX);
   EXPECT_TRUE(romea::FixQuality::FLOAT_RTK_FIX>=romea::FixQuality::DGPS_FIX);
   EXPECT_TRUE(romea::FixQuality::DGPS_FIX>=romea::FixQuality::GPS_FIX);
   EXPECT_TRUE(romea::FixQuality::GPS_FIX>=romea::FixQuality::PPS_FIX);
+}
+
+TEST(TestGPS, testTalkerIdToAcrnonym)
+{
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::GN).c_str(),"GNSS");
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::GA).c_str(),"GALILEO");
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::GP).c_str(),"NAVSTAR");
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::GB).c_str(),"BEIDOU");
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::BD).c_str(),"BEIDOU");
+  EXPECT_STREQ(romea::acronym(romea::TalkerId::GL).c_str(),"GLONASS");
 }
 
 

@@ -3,6 +3,7 @@
 
 //std
 #include <string>
+#include <ostream>
 
 namespace romea {
 
@@ -21,6 +22,8 @@ enum class FixQuality {
 FixQuality modeIndicatorToFixQuality(const std::string & modeIndicator);
 
 std::string description(const FixQuality & FixQuality);
+
+std::ostream& operator<<(std::ostream & os,const FixQuality & FixQuality);
 
 bool operator>=(FixQuality fixQuality1 ,FixQuality fixQuality2);
 
