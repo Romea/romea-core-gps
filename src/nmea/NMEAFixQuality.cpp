@@ -115,6 +115,7 @@ FixQuality modeIndicatorToFixQuality(const std::string &modeIndicator)
 std::ostream& operator<<(std::ostream & os,const FixQuality & FixQuality)
 {
   os<<description(FixQuality);
+  return os;
 }
 
 

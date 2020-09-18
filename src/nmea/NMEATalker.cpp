@@ -58,6 +58,7 @@ std::string acronym(const TalkerId & talkerId)
 std::ostream& operator<<(std::ostream & os, const TalkerId & talkerId)
 {
   os<<acronym(talkerId);
+  return os;
 }
 
 
