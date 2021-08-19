@@ -62,7 +62,8 @@ GSVFrame::GSVFrame(const std::string & nmeaGSVSentence)
     }
 
     //decode satellite data
-    for(size_t start=4; start<fields.size()-1; start+=4){
+    size_t start=4;
+    for(size_t n=0; n < (fields.size()-5)/4; ++n, start+=4){
 
       SatelliteInfo sv;
 
@@ -80,6 +81,11 @@ GSVFrame::GSVFrame(const std::string & nmeaGSVSentence)
 
       satellitesInfo.push_back(sv);
 
+    }
+
+    if(start+1!=fields.size() && !fields[start].empty())
+    {
+      signalID = std::stoi(fields[start]);
     }
   }
 }
@@ -135,6 +141,12 @@ std::ostream& operator<<(std::ostream & os, const GSVFrame & frame)
     }
 
   }
+
+  os << "signal ID ";
+  if(frame.signalID)
+    os << *frame.signalID;
+  os <<std::endl;
+
   os <<std::endl;
 
   return os;

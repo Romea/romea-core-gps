@@ -196,6 +196,7 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[3].elevation,66);
     EXPECT_EQ(*frame.satellitesInfo[3].azimut,309);
     EXPECT_EQ(frame.satellitesInfo[3].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.signalID.is_initialized(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
   }
 
@@ -209,6 +210,7 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[0].elevation,17);
     EXPECT_EQ(*frame.satellitesInfo[0].azimut,119);
     EXPECT_EQ(frame.satellitesInfo[0].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.signalID.is_initialized(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
   }
 
@@ -226,7 +228,19 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[1].elevation,05);
     EXPECT_EQ(*frame.satellitesInfo[1].azimut,112);
     EXPECT_EQ(frame.satellitesInfo[1].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.signalID.is_initialized(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
+  }
+
+  {
+    std::string gsvSentence="$GAGSV,3,1,09,03,01,036,18,07,61,158,37,08,46,059,38,13,47,117,38,2*7B";
+    romea::GSVFrame frame(gsvSentence);
+    EXPECT_EQ(*frame.numberOfSentences,3);
+    EXPECT_EQ(*frame.sentenceNumber,1);
+    EXPECT_EQ(*frame.numberOfSatellitesInView,9);
+    EXPECT_EQ(*frame.signalID,2);
+    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
+
   }
 }
 
@@ -308,6 +322,29 @@ TEST(TestGPS, testTalkerIdToAcrnonym)
   EXPECT_STREQ(romea::acronym(romea::TalkerId::GL).c_str(),"GLONASS");
 }
 
+//[ERROR] [1629290064.921145948]: $GPGSV,4,1,13,01,78,066,48,03,73,267,47,04,23,183,40,08,14,167,22,1*60
+//[ERROR] [1629290064.921911275]: $GPGSV,4,2,13,14,13,264,27,17,41,304,45,19,18,318,41,21,59,108,46,1*6D
+//[ERROR] [1629290064.922709891]: $GPGSV,4,3,13,22,80,032,48,28,,,32,32,16,041,36,36,30,143,39,1*53
+//[ERROR] [1629290064.923188603]: $GPGSV,4,4,13,49,37,177,44,1*5E
+//[ERROR] [1629290064.923978187]: $GPGSV,2,1,07,01,78,066,38,03,73,267,32,04,23,183,32,08,14,167,12,6*67
+//[ERROR] [1629290064.924690757]: $GPGSV,2,2,07,14,13,264,19,17,41,304,30,32,16,041,28,6*55
+//[ERROR] [1629290064.925037122]: $GPGSV,1,1,01,31,08,091,,0*56
+//[ERROR] [1629290064.925863931]: $GLGSV,3,1,09,65,07,037,31,66,67,042,46,67,54,212,47,73,02,318,22,1*7A
+//[ERROR] [1629290064.926688118]: $GLGSV,3,2,09,74,06,001,38,81,63,129,47,82,60,329,42,83,14,320,32,1*76
+//[ERROR] [1629290064.927146465]: $GLGSV,3,3,09,88,11,136,26,1*41
+//[ERROR] [1629290064.927946901]: $GLGSV,2,1,08,65,07,037,29,66,67,042,39,67,54,212,40,73,02,318,24,3*78
+//[ERROR] [1629290064.928742971]: $GLGSV,2,2,08,81,63,129,42,82,60,329,40,83,14,320,37,88,11,136,16,3*7A
+//[ERROR] [1629290064.929216208]: $GLGSV,1,1,01,68,04,215,,0*44
+//[ERROR] [1629290064.930066992]: $GAGSV,3,1,09,03,01,036,18,07,61,158,37,08,46,059,38,13,47,117,38,2*7B
+//[ERROR] [1629290064.930883203]: $GAGSV,3,2,09,18,21,165,25,24,01,347,21,26,74,317,35,31,08,303,28,2*71
+//[ERROR] [1629290064.931509929]: $GAGSV,3,3,09,33,24,305,31,2*4D
+//[ERROR] [1629290064.932336341]: $GAGSV,2,1,08,03,01,036,25,07,61,158,46,08,46,059,41,13,47,117,45,7*72
+//[ERROR] [1629290064.933146845]: $GAGSV,2,2,08,18,21,165,26,26,74,317,44,31,08,303,34,33,24,305,42,7*7E
+//[ERROR] [1629290064.933510958]: $GAGSV,1,1,01,01,02,254,,0*45
+//[ERROR] [1629290064.934294555]: $GBGSV,2,1,08,09,34,059,40,11,63,163,46,14,58,220,46,16,21,039,33,1*7C
+//[ERROR] [1629290064.935089278]: $GBGSV,2,2,08,21,39,053,45,28,29,311,45,33,29,226,46,34,39,153,48,1*7A
+//[ERROR] [1629290064.935920783]: $GBGSV,1,1,04,09,34,059,33,11,63,163,38,14,58,220,38,16,21,039,26,3*71
+//[ERROR] [1629290064.936830399]: $GBGSV,1,1,03,05,16,115,,06,23,043,,12,13,145,,0*42
 
 //-----------------------------------------------------------------------------
 int main(int argc, char **argv){

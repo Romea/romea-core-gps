@@ -37,6 +37,7 @@ struct GSVFrame
   boost::optional<unsigned short> numberOfSentences;
   boost::optional<unsigned short> sentenceNumber;
   boost::optional<unsigned short> numberOfSatellitesInView;
+  boost::optional<unsigned short> signalID;
   std::deque<SatelliteInfo> satellitesInfo;
 
 };
