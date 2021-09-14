@@ -99,7 +99,7 @@ TEST(TestGPS, testDecodeGGASentence)
     EXPECT_EQ(*frame.horizontalDilutionOfPrecision,2.17);
     EXPECT_EQ(*frame.geoidHeight,47.5);
     EXPECT_EQ(*frame.altitudeAboveGeoid,382.4);
-    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.is_initialized(),false);
+    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()),0);
 
@@ -112,14 +112,14 @@ TEST(TestGPS, testDecodeGGASentence)
   {
     std::string ggaSentence = "$GPGGA,085938.00,,,,,0,03,,,M,,M,,*44";
     romea::GGAFrame frame(ggaSentence);
-    EXPECT_EQ(frame.latitude.is_initialized(),false);
-    EXPECT_EQ(frame.longitude.is_initialized(),false);
+    EXPECT_EQ(frame.latitude.has_value(),false);
+    EXPECT_EQ(frame.longitude.has_value(),false);
     EXPECT_EQ(*frame.fixQuality,romea::FixQuality::INVALID_FIX);
     EXPECT_EQ(*frame.numberSatellitesUsedToComputeFix,3);
-    EXPECT_EQ(frame.horizontalDilutionOfPrecision.is_initialized(),false);
-    EXPECT_EQ(frame.geoidHeight.is_initialized(),false);
-    EXPECT_EQ(frame.altitudeAboveGeoid.is_initialized(),false);
-    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.is_initialized(),false);
+    EXPECT_EQ(frame.horizontalDilutionOfPrecision.has_value(),false);
+    EXPECT_EQ(frame.geoidHeight.has_value(),false);
+    EXPECT_EQ(frame.altitudeAboveGeoid.has_value(),false);
+    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()),0);
 
@@ -137,14 +137,14 @@ TEST(TestGPS, testDecodeGGASentence)
     std::cout << frame.toNMEA() << std::endl;
     std::cout << frame << std::endl;
 
-    EXPECT_EQ(frame.latitude.is_initialized(),false);
-    EXPECT_EQ(frame.longitude.is_initialized(),false);
+    EXPECT_EQ(frame.latitude.has_value(),false);
+    EXPECT_EQ(frame.longitude.has_value(),false);
     EXPECT_EQ(*frame.fixQuality,romea::FixQuality::FLOAT_RTK_FIX);
-    EXPECT_EQ(frame.numberSatellitesUsedToComputeFix.is_initialized(),false);
-    EXPECT_EQ(frame.horizontalDilutionOfPrecision.is_initialized(),true);
-    EXPECT_EQ(frame.geoidHeight.is_initialized(),false);
-    EXPECT_EQ(frame.altitudeAboveGeoid.is_initialized(),false);
-    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.is_initialized(),true);
+    EXPECT_EQ(frame.numberSatellitesUsedToComputeFix.has_value(),false);
+    EXPECT_EQ(frame.horizontalDilutionOfPrecision.has_value(),true);
+    EXPECT_EQ(frame.geoidHeight.has_value(),false);
+    EXPECT_EQ(frame.altitudeAboveGeoid.has_value(),false);
+    EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(),true);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()),0);
  }
@@ -183,7 +183,7 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[0].PRNNumber,15);
     EXPECT_EQ(*frame.satellitesInfo[0].elevation,0);
     EXPECT_EQ(*frame.satellitesInfo[0].azimut,21);
-    EXPECT_EQ(frame.satellitesInfo[0].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[0].SNR.has_value(),false);
     EXPECT_EQ(*frame.satellitesInfo[1].PRNNumber,16);
     EXPECT_EQ(*frame.satellitesInfo[1].elevation,29);
     EXPECT_EQ(*frame.satellitesInfo[1].azimut,187);
@@ -191,12 +191,12 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[2].PRNNumber,18);
     EXPECT_EQ(*frame.satellitesInfo[2].elevation,27);
     EXPECT_EQ(*frame.satellitesInfo[2].azimut,50);
-    EXPECT_EQ(frame.satellitesInfo[2].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[2].SNR.has_value(),false);
     EXPECT_EQ(*frame.satellitesInfo[3].PRNNumber,19);
     EXPECT_EQ(*frame.satellitesInfo[3].elevation,66);
     EXPECT_EQ(*frame.satellitesInfo[3].azimut,309);
-    EXPECT_EQ(frame.satellitesInfo[3].SNR.is_initialized(),false);
-    EXPECT_EQ(frame.signalID.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[3].SNR.has_value(),false);
+    EXPECT_EQ(frame.signalID.has_value(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
   }
 
@@ -209,8 +209,8 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[0].PRNNumber,40);
     EXPECT_EQ(*frame.satellitesInfo[0].elevation,17);
     EXPECT_EQ(*frame.satellitesInfo[0].azimut,119);
-    EXPECT_EQ(frame.satellitesInfo[0].SNR.is_initialized(),false);
-    EXPECT_EQ(frame.signalID.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[0].SNR.has_value(),false);
+    EXPECT_EQ(frame.signalID.has_value(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
   }
 
@@ -223,12 +223,12 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[0].PRNNumber,83);
     EXPECT_EQ(*frame.satellitesInfo[0].elevation,1);
     EXPECT_EQ(*frame.satellitesInfo[0].azimut,300);
-    EXPECT_EQ(frame.satellitesInfo[0].SNR.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[0].SNR.has_value(),false);
     EXPECT_EQ(*frame.satellitesInfo[1].PRNNumber,88);
     EXPECT_EQ(*frame.satellitesInfo[1].elevation,05);
     EXPECT_EQ(*frame.satellitesInfo[1].azimut,112);
-    EXPECT_EQ(frame.satellitesInfo[1].SNR.is_initialized(),false);
-    EXPECT_EQ(frame.signalID.is_initialized(),false);
+    EXPECT_EQ(frame.satellitesInfo[1].SNR.has_value(),false);
+    EXPECT_EQ(frame.signalID.has_value(),false);
     EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),romea::NMEAParsing::SentenceID::GSV);
   }
 
