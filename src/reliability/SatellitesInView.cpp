@@ -36,6 +36,7 @@ void SatellitesInView::setSatellitesInfo(const TalkerId & gnssId,
 const std::deque<GSVFrame::SatelliteInfo> & SatellitesInView::getSatellitesInfo(
     const TalkerId & globalPositioningID)const
 {
+  //c++20 replace by satellitesInfo_.contains
   auto I = satellitesInfo_.find(globalPositioningID);
   assert(I!=satellitesInfo_.end());
   return (*I).second;

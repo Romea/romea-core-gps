@@ -1,4 +1,5 @@
 #include "romea_gps/nmea/GSVFrameAggregator.hpp"
+#include <cassert>
 
 namespace romea {
 
@@ -42,6 +43,7 @@ bool GSVFrameAggregator::update(const GSVFrame &gsvFrame){
 const std::deque<GSVFrame::SatelliteInfo> &
 GSVFrameAggregator::getSatellitesInfo(const TalkerId &systemID)const{
 
+  //c++20 replace by satellitesInfo_.contains
   auto I = satellitesInfo_.find(systemID);
   assert(I!=satellitesInfo_.end());
   return (*I).second;

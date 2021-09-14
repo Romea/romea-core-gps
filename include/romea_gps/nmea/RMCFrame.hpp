@@ -9,10 +9,8 @@
 #include "NMEAFixDate.hpp"
 #include "NMEATalker.hpp"
 
-//boost to replace by std optional
-#include <boost/optional/optional.hpp>
-
 //std
+#include <optional>
 #include <string>
 #include <memory>
 #include <ostream>
@@ -35,15 +33,15 @@ struct RMCFrame
   RMCFrame(const std::string & nmeaRMCSentence);
 
   TalkerId talkerId;
-  boost::optional<FixTime> fixTime;
-  boost::optional<Status> status;
-  boost::optional<Latitude> latitude;
-  boost::optional<Longitude> longitude;
-  boost::optional<double> speedOverGroundInMeterPerSecond;
-  boost::optional<double> trackAngleTrue;
-  boost::optional<FixDate> fixDate;
-  boost::optional<double> magneticDeviation;
-  boost::optional<FixQuality> fixQuality;
+  std::optional<FixTime> fixTime;
+  std::optional<Status> status;
+  std::optional<Latitude> latitude;
+  std::optional<Longitude> longitude;
+  std::optional<double> speedOverGroundInMeterPerSecond;
+  std::optional<double> trackAngleTrue;
+  std::optional<FixDate> fixDate;
+  std::optional<double> magneticDeviation;
+  std::optional<FixQuality> fixQuality;
 
   std::string toNMEA() const;
 

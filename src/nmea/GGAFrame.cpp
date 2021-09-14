@@ -41,6 +41,7 @@ GGAFrame::GGAFrame(const std::string & nmeaGGASentence)
   talkerId=NMEAParsing::extractTalkerId(fields[0]);
 
   //Decode sentence
+  //c++ 20  nmeaGGASentence.start_with("GGA")
   if(fields.size()==16 &&
      nmeaGGASentence.substr(3,3) == "GGA" &&
      NMEAParsing::computeChecksum(nmeaGGASentence) == std::stoi(fields.back(),0,16))

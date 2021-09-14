@@ -8,10 +8,8 @@
 #include "NMEAFixQuality.hpp"
 #include "NMEATalker.hpp"
 
-//boost to replace by std optional
-#include <boost/optional/optional.hpp>
-
 //std
+#include <optional>
 #include <string>
 #include <memory>
 #include <ostream>
@@ -28,16 +26,16 @@ struct GGAFrame
   GGAFrame(const std::string &nmeaGGASentence);
 
   TalkerId talkerId;
-  boost::optional<FixTime> fixTime;
-  boost::optional<Latitude> latitude;
-  boost::optional<Longitude> longitude;
-  boost::optional<FixQuality> fixQuality;
-  boost::optional<unsigned short> numberSatellitesUsedToComputeFix;
-  boost::optional<double> horizontalDilutionOfPrecision;
-  boost::optional<double> altitudeAboveGeoid;
-  boost::optional<double> geoidHeight;
-  boost::optional<double> dgpsCorrectionAgeInSecond;
-  boost::optional<unsigned short> dgpsStationIdNumber;
+  std::optional<FixTime> fixTime;
+  std::optional<Latitude> latitude;
+  std::optional<Longitude> longitude;
+  std::optional<FixQuality> fixQuality;
+  std::optional<unsigned short> numberSatellitesUsedToComputeFix;
+  std::optional<double> horizontalDilutionOfPrecision;
+  std::optional<double> altitudeAboveGeoid;
+  std::optional<double> geoidHeight;
+  std::optional<double> dgpsCorrectionAgeInSecond;
+  std::optional<unsigned short> dgpsStationIdNumber;
 
   std::string toNMEA() const;
 

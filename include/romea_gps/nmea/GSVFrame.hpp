@@ -4,10 +4,8 @@
 //romea
 #include "NMEATalker.hpp"
 
-//boost to replace by std optional
-#include <boost/optional/optional.hpp>
-
 //std
+#include <optional>
 #include <string>
 #include <memory>
 #include <deque>
@@ -20,10 +18,10 @@ struct GSVFrame
 {
   struct SatelliteInfo {
     SatelliteInfo();
-    boost::optional<unsigned short> PRNNumber;
-    boost::optional<unsigned short> elevation;
-    boost::optional<unsigned short> azimut;
-    boost::optional<unsigned short> SNR;
+    std::optional<unsigned short> PRNNumber;
+    std::optional<unsigned short> elevation;
+    std::optional<unsigned short> azimut;
+    std::optional<unsigned short> SNR;
   };
 
 
@@ -34,10 +32,10 @@ struct GSVFrame
   GSVFrame(const std::string & nmeaGSVSentence);
 
   TalkerId talkerID;
-  boost::optional<unsigned short> numberOfSentences;
-  boost::optional<unsigned short> sentenceNumber;
-  boost::optional<unsigned short> numberOfSatellitesInView;
-  boost::optional<unsigned short> signalID;
+  std::optional<unsigned short> numberOfSentences;
+  std::optional<unsigned short> sentenceNumber;
+  std::optional<unsigned short> numberOfSatellitesInView;
+  std::optional<unsigned short> signalID;
   std::deque<SatelliteInfo> satellitesInfo;
 
 };

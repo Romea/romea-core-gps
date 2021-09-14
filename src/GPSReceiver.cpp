@@ -44,6 +44,7 @@ void GPSReceiver::setUERE(const FixQuality & fixQuality,const double & UERE)
 //--------------------------------------------------------------------------
 const double & GPSReceiver::getUERE(const FixQuality & fixQuality) const
 {
+  //c++20 replace by fixUEREs_.contains
   auto it=fixUEREs_.find(fixQuality);
   assert(it!=fixUEREs_.end());
   return (*it).second;
