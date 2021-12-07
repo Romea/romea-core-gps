@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/nmea/NMEAFixDate.hpp"
+#include "romea_core_gps/nmea/NMEAFixDate.hpp"
 
 //std
 #include <cassert>

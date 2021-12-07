@@ -1,4 +1,4 @@
-#include "romea_gps/nmea/NMEALatitude.hpp"
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
 #include <iomanip>
 #include <cassert>
 

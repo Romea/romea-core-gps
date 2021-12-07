@@ -1,4 +1,4 @@
-#include "romea_gps/nmea/GSVFrameAggregator.hpp"
+#include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
 #include <cassert>
 
 namespace romea {

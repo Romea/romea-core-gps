@@ -1,7 +1,7 @@
 //romea
-#include "romea_gps/nmea/RMCFrame.hpp"
-#include "romea_gps/nmea/NMEAParsing.hpp"
-#include <romea_common/math/EulerAngles.hpp>
+#include "romea_core_gps/nmea/RMCFrame.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
+#include <romea_core_common/math/EulerAngles.hpp>
 
 //std
 #include <iostream>

@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/reliability/SatellitesInView.hpp"
+#include "romea_core_gps/reliability/SatellitesInView.hpp"
 
 //std
 #include <typeinfo>

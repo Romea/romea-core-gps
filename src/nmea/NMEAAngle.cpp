@@ -1,8 +1,8 @@
-#include "romea_gps/nmea/NMEAAngle.hpp"
-#include "romea_gps/nmea/NMEAParsing.hpp"
-#include "romea_gps/nmea/NMEALatitude.hpp"
-#include "romea_gps/nmea/NMEALongitude.hpp"
-#include "romea_common/math/Algorithm.hpp"
+#include "romea_core_gps/nmea/NMEAAngle.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
+#include "romea_core_gps/nmea/NMEALongitude.hpp"
+#include "romea_core_common/math/Algorithm.hpp"
 
 namespace romea
 {

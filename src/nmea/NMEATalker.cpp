@@ -1,4 +1,4 @@
-#include "romea_gps/nmea/NMEATalker.hpp"
+#include "romea_core_gps/nmea/NMEATalker.hpp"
 
 namespace romea {
 

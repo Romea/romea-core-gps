@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/nmea/NMEAFixQuality.hpp"
+#include "romea_core_gps/nmea/NMEAFixQuality.hpp"
 
 //std
 #include <cassert>

@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/nmea/NMEAFixTime.hpp"
+#include "romea_core_gps/nmea/NMEAFixTime.hpp"
 
 //std
 #include <cassert>

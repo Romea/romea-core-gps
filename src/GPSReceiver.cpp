@@ -1,4 +1,4 @@
-#include "romea_gps/GPSReceiver.hpp"
+#include "romea_core_gps/GPSReceiver.hpp"
 
 namespace {
 const double DEFAULT_UERE_GPS_FIX       = 3.0;

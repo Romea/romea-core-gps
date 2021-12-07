@@ -1,6 +1,6 @@
 //romea
-#include "romea_gps/nmea/GSVFrame.hpp"
-#include "romea_gps/nmea/NMEAParsing.hpp"
+#include "romea_core_gps/nmea/GSVFrame.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
 
 namespace romea {
 

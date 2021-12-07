@@ -2,7 +2,7 @@
 #define romea_NMEAParsing_hpp
 
 //romea
-#include "romea_common/time/Time.hpp"
+#include "romea_core_common/time/Time.hpp"
 #include "NMEAFixTime.hpp"
 #include "NMEAFixDate.hpp"
 #include "NMEATalker.hpp"

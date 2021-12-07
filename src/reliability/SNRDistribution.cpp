@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/reliability/SNRDistribution.hpp"
+#include "romea_core_gps/reliability/SNRDistribution.hpp"
 
 //std
 #include <cassert>

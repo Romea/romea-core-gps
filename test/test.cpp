@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 //romea
-#include <romea_gps/GPSReceiver.hpp>
+#include <romea_core_gps/GPSReceiver.hpp>
 #include <iostream>
 
 TEST(TestGPS, testLatitude)

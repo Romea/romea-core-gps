@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/reliability/HalfNormalDistribution.hpp"
+#include "romea_core_gps/reliability/HalfNormalDistribution.hpp"
 
 //std
 #include <cmath>

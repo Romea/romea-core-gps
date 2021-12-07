@@ -1,5 +1,5 @@
 //romea
-#include "romea_gps/reliability/GPSReliability.hpp"
+#include "romea_core_gps/reliability/GPSReliability.hpp"
 
 //std
 #include <cassert>
