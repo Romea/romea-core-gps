@@ -25,6 +25,13 @@ public :
 
   GPSReceiver();
 
+  GPSReceiver(const double & GpsFixEure,
+              const double & DGpsFixEure,
+              const double & FloatRtkFixEure,
+              const double & RtkGpsFixEure,
+              const double & SimulationFixEure,
+              const Eigen::Vector3d & antennaBodyPosition = Eigen::Vector3d::Zero());
+
 public :
 
   void setAntennaBodyPosition(const Eigen::Vector3d & antennaBodyPosition);
