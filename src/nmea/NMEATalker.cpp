@@ -5,7 +5,7 @@ namespace romea {
 //-----------------------------------------------------------------------------
 std::string description(const TalkerId & talkerId)
 {
-  switch(talkerId){
+  switch (talkerId){
     case TalkerId::GN :
       return "Global Navigation Satellite Systems";
       break;
@@ -57,9 +57,8 @@ std::string acronym(const TalkerId & talkerId)
 //-----------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream & os, const TalkerId & talkerId)
 {
-  os<<acronym(talkerId);
+  os << acronym(talkerId);
   return os;
 }
 
-
-}
+}  // namespace romea

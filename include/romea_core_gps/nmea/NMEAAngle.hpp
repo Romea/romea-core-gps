@@ -1,7 +1,7 @@
-#ifndef romea_NMEAAngle_hpp
-#define romea_NMEAAngle_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAANGLE_HPP_ 
+#define ROMEA_CORE_GPS_NMEA_NMEAANGLE_HPP_ 
 
-//std
+// std
 #include <string>
 #include <ostream>
 #include <iomanip>
@@ -9,22 +9,18 @@
 namespace romea
 {
 
-
 template <class CardinalDirections>
 class NmeaAngle
 {
-
-
 public:
-
-  NmeaAngle(const double & angle);
+  explicit NmeaAngle(const double & angle);
 
   NmeaAngle(const int & degrees,
             const int & minutes,
             const double & microSeconds,
             const CardinalDirections &direction);
 
-  virtual ~NmeaAngle()=default;
+  virtual ~NmeaAngle() = default;
 
   const int & getDegrees()const;
 
@@ -36,15 +32,12 @@ public:
 
   double toDouble()const;
 
-
-
 protected :
 
   int degrees_;
   int minutes_;
   double seconds_;
   CardinalDirections direction_;
-
 };
 
 //-----------------------------------------------------------------------------
@@ -56,13 +49,13 @@ std::ostream& operator<<(std::ostream & os, const NmeaAngle<CardinalDirections> 
   double seconds = mmeaAngle.getSeconds();
   std::string direction = toString(mmeaAngle.getDirection());
 
-  os <<std::setfill('0');
-  os <<degrees<<"d";
-  os <<std::setw(2)<<minutes<<"m";
-  os <<std::setw(2)<<seconds<<"s "<< direction;
+  os << std::setfill('0');
+  os << degrees << "d";
+  os << std::setw(2) << minutes <<"m";
+  os << std::setw(2) << seconds <<"s "<< direction;
   return os;
 }
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAANGLE_HPP_ 

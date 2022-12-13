@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/nmea/NMEAFixDate.hpp"
 
-//std
+// std
 #include <cassert>
 #include <iomanip>
 #include <sstream>
@@ -16,7 +16,7 @@ FixDate::FixDate(int years,
   months_(months),
   days_(days)
 {
-  assert(years_<100);
+  assert(years_ < 100);
 }
 
 //-----------------------------------------------------------------------------
@@ -37,7 +37,6 @@ double FixDate::getDays()const
   return days_;
 }
 
-
 //-----------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream & os, const FixDate & fixDate)
 {
@@ -45,11 +44,11 @@ std::ostream& operator<<(std::ostream & os, const FixDate & fixDate)
   int month  = fixDate.getMonths();
   int days = fixDate.getDays();
 
-  os <<std::setfill('0');
-  os <<std::setw(2)<<days<<"/";
-  os <<std::setw(2)<<month<<"/";
-  os <<std::setw(2)<<years;
+  os << std::setfill('0');
+  os << std::setw(2) << days <<"/";
+  os << std::setw(2) << month <<"/";
+  os << std::setw(2) <<years;
   return os;
 }
 
-}
+}  // namespace romea

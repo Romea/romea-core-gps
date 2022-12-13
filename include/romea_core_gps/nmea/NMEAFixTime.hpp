@@ -1,7 +1,7 @@
-#ifndef romea_NMEAFixTime_hpp
-#define romea_NMEAFixTime_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
+#define ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
 
-//std
+// std
 #include <string>
 
 namespace romea
@@ -10,7 +10,6 @@ namespace romea
 class FixTime
 {
 public:
-
   FixTime(int hours,
           int minutes,
           double seconds);
@@ -35,7 +34,6 @@ private :
 
 std::ostream& operator<<(std::ostream & os, const FixTime & FixTime);
 
-}
+}  // namespace romea
 
-
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_

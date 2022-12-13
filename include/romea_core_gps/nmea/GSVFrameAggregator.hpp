@@ -1,23 +1,21 @@
-#ifndef romea_GSVFrameConcatenation_hpp
-#define romea_GSVFrameConcatenation_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_
+#define ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_
 
-//romea
-#include "GSVFrame.hpp"
-
-//stl
+// stl
 #include <deque>
 #include <map>
+
+// romea
+#include "romea_core_gps/nmea/GSVFrame.hpp"
+
 
 namespace romea {
 
 class GSVFrameAggregator {
-
 public:
-
   using SatellitesInfo = std::deque<GSVFrame::SatelliteInfo>;
 
 public:
-
   GSVFrameAggregator();
 
   bool update(const GSVFrame & gsvFrame);
@@ -26,8 +24,9 @@ public:
 
 private :
 
-  std::map<TalkerId,SatellitesInfo> satellitesInfo_;
+  std::map<TalkerId, SatellitesInfo> satellitesInfo_;
 };
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_

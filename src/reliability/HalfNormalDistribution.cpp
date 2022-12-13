@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/reliability/HalfNormalDistribution.hpp"
 
-//std
+// std
 #include <cmath>
 
 namespace romea {
@@ -17,12 +17,11 @@ HalfNormalDistribution::HalfNormalDistribution(const double &snrMean,
 //--------------------------------------------------------------------------
 double HalfNormalDistribution::operator()(const double & snr) const
 {
-
-  if(snr>mean_){
+  if (snr > mean_){
     return 1.0f;
   }
 
   return std::exp(-(snr-mean_)*(snr-mean_)/var2_);
 }
 
-}
+}  // namespace romea

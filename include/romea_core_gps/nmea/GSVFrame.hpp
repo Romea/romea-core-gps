@@ -1,15 +1,16 @@
-#ifndef romea_GSVFrame_hpp
-#define romea_GSVFrame_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 
+#define ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 
 
-//romea
-#include "NMEATalker.hpp"
-
-//std
+// std
 #include <optional>
 #include <string>
 #include <memory>
 #include <deque>
 #include <ostream>
+
+// romea
+#include "romea_core_gps/nmea/NMEATalker.hpp"
+
 
 namespace romea {
 
@@ -24,12 +25,11 @@ struct GSVFrame
     std::optional<unsigned short> SNR;
   };
 
-
-  using Ptr =std::shared_ptr<GSVFrame> ;
+  using Ptr = std::shared_ptr<GSVFrame> ;
 
   GSVFrame();
 
-  GSVFrame(const std::string & nmeaGSVSentence);
+  explicit GSVFrame(const std::string & nmeaGSVSentence);
 
   TalkerId talkerID;
   std::optional<unsigned short> numberOfSentences;
@@ -37,11 +37,10 @@ struct GSVFrame
   std::optional<unsigned short> numberOfSatellitesInView;
   std::optional<unsigned short> signalID;
   std::deque<SatelliteInfo> satellitesInfo;
-
 };
 
 std::ostream& operator<<(std::ostream & os, const GSVFrame & frame);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 

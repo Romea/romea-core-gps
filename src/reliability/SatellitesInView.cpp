@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/reliability/SatellitesInView.hpp"
 
-//std
+// std
 #include <typeinfo>
 #include <cassert>
 
@@ -12,14 +12,13 @@ namespace romea {
 SatellitesInView::SatellitesInView():
   satellitesInfo_()
 {
-
 }
 
 //--------------------------------------------------------------------------
 void SatellitesInView::setSatellitesInfo(const TalkerId & gnssId,
     const std::deque<GSVFrame::SatelliteInfo> &satellitesInfo)
 {
-  satellitesInfo_[gnssId]=satellitesInfo;
+  satellitesInfo_[gnssId] = satellitesInfo;
 }
 
 //--------------------------------------------------------------------------
@@ -36,10 +35,10 @@ void SatellitesInView::setSatellitesInfo(const TalkerId & gnssId,
 const std::deque<GSVFrame::SatelliteInfo> & SatellitesInView::getSatellitesInfo(
     const TalkerId & globalPositioningID)const
 {
-  //c++20 replace by satellitesInfo_.contains
+  // TODO(jean) c++20 replace by satellitesInfo_.contains
   auto I = satellitesInfo_.find(globalPositioningID);
-  assert(I!=satellitesInfo_.end());
+  assert(I != satellitesInfo_.end());
   return (*I).second;
 }
 
-}
+}  // namespace romea

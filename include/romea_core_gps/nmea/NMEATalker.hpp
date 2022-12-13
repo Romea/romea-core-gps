@@ -1,14 +1,14 @@
-#ifndef romea_NMEATalker_hpp
-#define romea_NMEATalker_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEATALKER_HPP_ 
+#define ROMEA_CORE_GPS_NMEA_NMEATALKER_HPP_ 
 
-//std
+// std
 #include <string>
 #include <ostream>
 
 namespace romea {
 
 enum class TalkerId{
-  GN=0,
+  GN = 0,
   GP,
   GL,
   GA,
@@ -17,13 +17,12 @@ enum class TalkerId{
   UNSUPPORTED
 };
 
-
 std::string description(const TalkerId & talkerId);
 
 std::string acronym(const TalkerId & talkerId);
 
 std::ostream& operator<<(std::ostream & os, const TalkerId & talkerId);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEATALKER_HPP_ 

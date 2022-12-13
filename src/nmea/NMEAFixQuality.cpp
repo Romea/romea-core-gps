@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/nmea/NMEAFixQuality.hpp"
 
-//std
+// std
 #include <cassert>
 
 namespace romea {
@@ -43,9 +43,10 @@ std::string description(const FixQuality & fixQuality)
 }
 
 //-----------------------------------------------------------------------------
-bool operator>=(FixQuality fixQuality1 ,FixQuality fixQuality2)
+bool operator>=(FixQuality fixQuality1 , FixQuality fixQuality2)
 {
-  switch(fixQuality2){
+  switch (fixQuality2)
+  {
   case FixQuality::RTK_FIX :
     return fixQuality1 == FixQuality::RTK_FIX;
     break;
@@ -78,8 +79,8 @@ bool operator>=(FixQuality fixQuality1 ,FixQuality fixQuality2)
 //-----------------------------------------------------------------------------
 FixQuality modeIndicatorToFixQuality(const std::string &modeIndicator)
 {
-  assert(modeIndicator.size()==1);
-  switch(modeIndicator[0])
+  assert(modeIndicator.size() ==1 );
+  switch (modeIndicator[0])
   {
   case 'A':
     return FixQuality::GPS_FIX;
@@ -112,11 +113,10 @@ FixQuality modeIndicatorToFixQuality(const std::string &modeIndicator)
 }
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream & os,const FixQuality & FixQuality)
+std::ostream& operator<<(std::ostream & os, const FixQuality & FixQuality)
 {
-  os<<description(FixQuality);
+  os << description(FixQuality);
   return os;
 }
 
-
-}
+}  // namespace romea

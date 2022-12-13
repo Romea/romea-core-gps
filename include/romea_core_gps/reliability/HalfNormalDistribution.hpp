@@ -1,10 +1,9 @@
-#ifndef romea_HalfNormalDistribution_hpp
-#define romea_HalfNormalDistribution_hpp
+#ifndef ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_
+#define ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_
 
 namespace romea {
 
 class HalfNormalDistribution {
-
 public :
 
   HalfNormalDistribution(const double &snrMean, const double &snrVariance);
@@ -17,5 +16,6 @@ protected :
   double var2_;
 };
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_

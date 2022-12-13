@@ -1,7 +1,7 @@
-#ifndef romea_NMEAFixQuality_hpp
-#define romea_NMEAFixQuality_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAFIXQUALITY_HPP_
+#define ROMEA_CORE_GPS_NMEA_NMEAFIXQUALITY_HPP_
 
-//std
+// std
 #include <string>
 #include <ostream>
 
@@ -23,9 +23,10 @@ FixQuality modeIndicatorToFixQuality(const std::string & modeIndicator);
 
 std::string description(const FixQuality & FixQuality);
 
-std::ostream& operator<<(std::ostream & os,const FixQuality & FixQuality);
+std::ostream& operator<<(std::ostream & os, const FixQuality & FixQuality);
 
-bool operator>=(FixQuality fixQuality1 ,FixQuality fixQuality2);
+bool operator>=(FixQuality fixQuality1 , FixQuality fixQuality2);
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAFIXQUALITY_HPP_

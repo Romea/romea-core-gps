@@ -1,4 +1,7 @@
+// romea
 #include "romea_core_gps/nmea/NMEALongitude.hpp"
+
+// std
 #include <iomanip>
 #include <cassert>
 
@@ -8,12 +11,10 @@ namespace romea
 //-----------------------------------------------------------------------------
 std::string toString(const LongitudeDirections &direction)
 {
-  if(direction==LongitudeDirections::EAST)
+  if (direction == LongitudeDirections::EAST)
   {
     return "E";
-  }
-  else
-  {
+  } else {
     return "W";
   }
 }
@@ -21,15 +22,13 @@ std::string toString(const LongitudeDirections &direction)
 //-----------------------------------------------------------------------------
 LongitudeDirections toLongitudeDirection(const std::string & stringDirection)
 {
-  if(stringDirection.compare("E")==0)
+  if (stringDirection.compare("E") == 0)
   {
     return LongitudeDirections::EAST;
-  }
-  else
-  {
-    assert(stringDirection.compare("W")==0);
+  } else {
+    assert(stringDirection.compare("W") == 0);
     return LongitudeDirections::WEST;
   }
 }
 
-}
+}  // namespace romea

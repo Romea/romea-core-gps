@@ -76,4 +76,4 @@ double NmeaAngle<CardinalDirections >::toDouble()const
 template class NmeaAngle<LatitudeDirections>;
 template class NmeaAngle<LongitudeDirections>;
 
-}
+}  // namespace romea

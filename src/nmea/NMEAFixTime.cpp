@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/nmea/NMEAFixTime.hpp"
 
-//std
+// std
 #include <cassert>
 #include <iomanip>
 #include <sstream>
@@ -17,9 +17,9 @@ FixTime::FixTime(int hours,
   minutes_(minutes),
   seconds_(seconds)
 {
-  assert(hours<24);
-  assert(minutes<60);
-  assert(seconds<60);
+  assert(hours < 24);
+  assert(minutes < 60);
+  assert(seconds < 60);
 }
 
 //-----------------------------------------------------------------------------
@@ -30,18 +30,16 @@ FixTime::FixTime(int seconds,
   seconds_(0)
 
 {
-
   seconds = seconds %(24*60*60);
   hours_ = seconds/3600;
-  seconds -=hours_*3600;
+  seconds -= hours_*3600;
   minutes_ = seconds/60;
   seconds -= minutes_*60;
   seconds_ = seconds + nanoseconds/1000000000.;
 
-  assert(hours_<24);
-  assert(minutes_<60);
-  assert(seconds_<60);
-
+  assert(hours_ < 24);
+  assert(minutes_ < 60);
+  assert(seconds_ < 60);
 }
 
 
@@ -71,12 +69,12 @@ std::ostream& operator<<(std::ostream & os, const FixTime & fixTime)
   int seconds = fixTime.getSeconds();
   int milliseconds = (fixTime.getSeconds()-seconds)*1000;
 
-  os <<std::setfill('0');
-  os <<std::setw(2)<<hours<<":";
-  os <<std::setw(2)<<minutes<<":";
-  os <<std::setw(2)<<seconds<<".";
-  os <<std::setw(3)<<milliseconds;
+  os << std::setfill('0');
+  os << std::setw(2) << hours <<":";
+  os << std::setw(2) << minutes <<":";
+  os << std::setw(2) << seconds <<".";
+  os << std::setw(3) << milliseconds;
   return os;
 }
 
-}
+}  // namespace romea

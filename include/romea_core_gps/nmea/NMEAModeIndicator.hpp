@@ -1,7 +1,7 @@
-#ifndef romea_NMEAModeIndicator_hpp
-#define romea_NMEAModeIndicator_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAMODEINDICATOR_HPP_
+#define ROMEA_CORE_GPS_NMEA_NMEAMODEINDICATOR_HPP_
 
-//std
+// std
 #include <string>
 
 namespace romea
@@ -20,6 +20,6 @@ enum class ModeIndicator
   SIMULATION_MODE
 };
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAMODEINDICATOR_HPP_

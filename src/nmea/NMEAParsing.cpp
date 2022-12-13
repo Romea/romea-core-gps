@@ -36,7 +36,7 @@ void NMEAParsing::removeCRLF(std::string & sentence)
 
 //-----------------------------------------------------------------------------
 bool NMEAParsing::isNMEASentence(const std::string &sentence)
-{  
+{
   return sentence.size()>=MINIMAL_NUMBER_OF_CHARACTERS_IN_SENTENCE &&
       sentence.substr(0,2).compare(PREFIX) == 0 &&
       sentence[sentence.length()-CHECKSUM_LENGTH_INCLUDING_WILDCARD]=='*';

@@ -1,26 +1,26 @@
-#ifndef romea_GPSReceiver_hpp
-#define romea_GPSReceiver_hpp
+#ifndef ROMEA_CORE_GPS_GPSRECEIVER_HPP_
+#define ROMEA_CORE_GPS_GPSRECEIVER_HPP_
 
-//romea
-//#include "../Sensor.hpp"
-#include "nmea/GGAFrame.hpp"
-#include "nmea/RMCFrame.hpp"
-#include "nmea/GSVFrame.hpp"
-#include "nmea/NMEAParsing.hpp"
-#include "nmea/GSVFrameAggregator.hpp"
-#include "reliability/GPSReliability.hpp"
-
-//Eigen
-#include <Eigen/Eigen>
-
-//stl
+// stl
 #include <mutex>
+#include <map>
+#include <string>
+
+// romea
+#include "romea_core_gps/nmea/GGAFrame.hpp"
+#include "romea_core_gps/nmea/RMCFrame.hpp"
+#include "romea_core_gps/nmea/GSVFrame.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
+#include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
+#include "romea_core_gps/reliability/GPSReliability.hpp"
+
+// Eigen
+#include <Eigen/Eigen>
 
 namespace romea {
 
 class GPSReceiver
 {
-
 public :
 
   GPSReceiver();
@@ -37,7 +37,7 @@ public :
   void setAntennaBodyPosition(const Eigen::Vector3d & antennaBodyPosition);
   const Eigen::Vector3d & getAntennaBodyPosition() const;
 
-  void setUERE(const FixQuality & fixQuality,const double & UERE);
+  void setUERE(const FixQuality & fixQuality, const double & UERE);
   const double & getUERE(const FixQuality & fixQuality) const;
 
 public :
@@ -54,7 +54,7 @@ public :
 
 protected:
 
-  std::map<FixQuality,double> fixUEREs_;
+  std::map<FixQuality, double> fixUEREs_;
 
   mutable std::mutex mutex_;
   GSVFrameAggregator gsvFrameAggregator_;
@@ -65,6 +65,6 @@ protected:
   Eigen::Vector3d antennaBodyPosition_;
 };
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_GPSRECEIVER_HPP_

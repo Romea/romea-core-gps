@@ -1,14 +1,14 @@
-//romea
-#include "romea_core_gps/nmea/GGAFrame.hpp"
-#include "romea_core_gps/nmea/NMEAParsing.hpp"
-
-//std
+// std
 #include <vector>
 #include <string>
 #include <iostream>
+#include <optional>
+
+// romea
+#include "romea_core_gps/nmea/GGAFrame.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
 
 namespace romea {
-
 
 //--------------------------------------------------------------------------
 GGAFrame::GGAFrame():
@@ -24,79 +24,78 @@ GGAFrame::GGAFrame():
   dgpsCorrectionAgeInSecond(),
   dgpsStationIdNumber()
 {
-
 }
 
 //--------------------------------------------------------------------------
 GGAFrame::GGAFrame(const std::string & nmeaGGASentence)
 {
   assert(NMEAParsing::isNMEASentence(nmeaGGASentence));
-  assert(nmeaGGASentence.substr(3,3) == "GGA");
+  assert(nmeaGGASentence.substr(3, 3) == "GGA");
 
-  //Split sentence in fields
+  // Split sentence in fields
   std::setlocale(LC_ALL, "C");
   std::vector<std::string> fields = NMEAParsing::splitInFields(nmeaGGASentence);
 
-  //Decode GPS prefix ID
-  talkerId=NMEAParsing::extractTalkerId(fields[0]);
+  // Decode GPS prefix ID
+  talkerId = NMEAParsing::extractTalkerId(fields[0]);
 
-  //Decode sentence
-  //c++ 20  nmeaGGASentence.start_with("GGA")
-  if(fields.size()==16 &&
-     nmeaGGASentence.substr(3,3) == "GGA" &&
-     NMEAParsing::computeChecksum(nmeaGGASentence) == std::stoi(fields.back(),0,16))
+  // Decode sentence
+  // TODO(jean) c++ 20  nmeaGGASentence.start_with("GGA")
+  if (fields.size() == 16 &&
+      nmeaGGASentence.substr(3, 3) == "GGA" &&
+      NMEAParsing::computeChecksum(nmeaGGASentence) == std::stoi(fields.back(), 0, 16))
   {
-    //decode fix date
-    if(!fields[1].empty())
+    // decode fix date
+    if (!fields[1].empty())
     {
-      fixTime= NMEAParsing::stringToFixTime(fields[1]);
+      fixTime = NMEAParsing::stringToFixTime(fields[1]);
     }
 
-    //decode latitude
-    if(!fields[2].empty() && !fields[3].empty())
+    // decode latitude
+    if (!fields[2].empty() && !fields[3].empty())
     {
-      latitude = NMEAParsing::stringToLatitude(fields[2],fields[3]);
+      latitude  = NMEAParsing::stringToLatitude(fields[2], fields[3]);
     }
 
-    //decode longitude
-    if(!fields[4].empty() && !fields[5].empty())
+    // decode longitude
+    if (!fields[4].empty() && !fields[5].empty())
     {
-      longitude =  NMEAParsing::stringToLongitude(fields[4],fields[5]);
+      longitude  =  NMEAParsing::stringToLongitude(fields[4], fields[5]);
     }
 
-    //Decode fix quality
-    if(!fields[6].empty()){
-      fixQuality =static_cast<FixQuality>(std::stoi(fields[6]));
+    // Decode fix quality
+    if (!fields[6].empty()){
+      fixQuality  = static_cast<FixQuality>(std::stoi(fields[6]));
     }
 
-    //Decode number of tracked satellites
-    if(!fields[7].empty()){
-      numberSatellitesUsedToComputeFix =std::stoi(fields[7]);
+    // Decode number of tracked satellites
+    if (!fields[7].empty()){
+      numberSatellitesUsedToComputeFix  = std::stoi(fields[7]);
     }
 
-    //Decode horizontal dilution of precision
-    if(!fields[8].empty()){
-      horizontalDilutionOfPrecision =std::stod(fields[8]);
+    // Decode horizontal dilution of precision
+    if (!fields[8].empty()){
+      horizontalDilutionOfPrecision  = std::stod(fields[8]);
     }
 
-    //Decode altitude above geoid
-    if(!fields[9].empty() && fields[10]=="M"){
-      altitudeAboveGeoid =std::stod(fields[9]);
+    // Decode altitude above geoid
+    if (!fields[9].empty() && fields[10] == "M"){
+      altitudeAboveGeoid  = std::stod(fields[9]);
     }
 
-    //Dedoce height of geoid above WGS84 ellipsoid
-    if(!fields[11].empty() && fields[12]=="M"){
-      geoidHeight =std::stod(fields[11]);
+    // Dedoce height of geoid above WGS84 ellipsoid
+    if (!fields[11].empty() && fields[12] == "M"){
+      geoidHeight = std::stod(fields[11]);
     }
 
-    //Decode age of the dgps correction
-    if(!fields[13].empty()){
-      dgpsCorrectionAgeInSecond =std::stod(fields[13]);
+    // Decode age of the dgps correction
+    if (!fields[13].empty()){
+      dgpsCorrectionAgeInSecond = std::stod(fields[13]);
     }
 
-    //Decode dgps station id number
-    if(!fields[14].empty()){
-      dgpsStationIdNumber =std::stoi(fields[14]);
+    // Decode dgps station id number
+    if (!fields[14].empty()){
+      dgpsStationIdNumber = std::stoi(fields[14]);
     }
   }
 }
@@ -106,93 +105,82 @@ std::string GGAFrame::toNMEA() const
 {
   std::stringstream ss;
 
-  //encode prefix
-  ss<<"$"<<NMEAParsing::talkerIdToString(talkerId)<<"GGA"<<",";
+  // encode prefix
+  ss << "$" << NMEAParsing::talkerIdToString(talkerId) << "GGA" << ",";
 
-  //encode fixtime
-  if(fixTime)
+  // encode fixtime
+  if (fixTime)
   {
-    ss<<NMEAParsing::fixTimeToString(*fixTime);
+    ss << NMEAParsing::fixTimeToString(*fixTime);
   }
-  ss<<",";
+  ss<< ",";
 
 
-  //encode latitude
-  if(latitude)
+  // encode latitude
+  if (latitude)
   {
-    ss<<NMEAParsing::latitudeToString(*latitude);
+    ss << NMEAParsing::latitudeToString(*latitude);
+  } else {
+    ss << ",";
   }
-  else
+  ss << ",";
+
+
+  // encode longitude
+  if (longitude)
   {
-    ss<<",";
+    ss << NMEAParsing::longitudeToString(*longitude);
+  } else {
+    ss << ",";
   }
-  ss<<",";
+  ss << ",";
 
-
-  //encode longitude
-  if(longitude)
-  {
-    ss<<NMEAParsing::longitudeToString(*longitude);
+  // Encode fix quality
+  if (fixQuality){
+    ss << int(*fixQuality);
   }
-  else
-  {
-    ss<<",";
+  ss << ",";
+
+  // Encode number of tracked satellites
+  if (numberSatellitesUsedToComputeFix){
+    ss << std::setfill('0') << std::setw(2) << *numberSatellitesUsedToComputeFix;
   }
-  ss<<",";
+  ss << ",";
 
-  //Encode fix quality
-  if(fixQuality){
-    ss<< int(*fixQuality);
+  // Encode horizontal dilution of precision
+  if (horizontalDilutionOfPrecision){
+    ss << *horizontalDilutionOfPrecision;
   }
-  ss<<",";
+  ss<< std::fixed << std::setprecision(2) << ",";
 
-
-  //Encode number of tracked satellites
-  if(numberSatellitesUsedToComputeFix){
-    ss<<std::setfill('0')<<std::setw(2)<<*numberSatellitesUsedToComputeFix;
+  // Decode altitude above geoid
+  if (altitudeAboveGeoid){
+    ss << std::fixed << std::setprecision(1) << *altitudeAboveGeoid;
   }
-  ss<<",";
+  ss << ",M,";
 
-
-
-  //Encode horizontal dilution of precision
-  if(horizontalDilutionOfPrecision){
-    ss<<*horizontalDilutionOfPrecision;
+  // Encode height of geoid above WGS84 ellipsoid
+  if (geoidHeight){
+    ss << std::fixed << std::setprecision(1) << *geoidHeight;
   }
-  ss<<std::fixed<<std::setprecision(2)<<",";
+  ss << ",M,";
 
-
-  //Decode altitude above geoid
-  if(altitudeAboveGeoid){
-    ss<<std::fixed<<std::setprecision(1)<<*altitudeAboveGeoid;
+  // Decode age of the dgps correction
+  if (dgpsCorrectionAgeInSecond){
+    ss << *dgpsCorrectionAgeInSecond;
   }
-  ss<<",M,";
+  ss << ",";
 
-
-  //Encode height of geoid above WGS84 ellipsoid
-  if(geoidHeight){
-    ss<<std::fixed<<std::setprecision(1)<<*geoidHeight;
-  }
-  ss<<",M,";
-
-  //Decode age of the dgps correction
-  if(dgpsCorrectionAgeInSecond){
-
-    ss<<*dgpsCorrectionAgeInSecond;
-  }
-  ss<<",";
-
-  //Decode dgps station id number
-  if(dgpsStationIdNumber){
-    ss<<*dgpsStationIdNumber;
+  // Decode dgps station id number
+  if (dgpsStationIdNumber){
+    ss << *dgpsStationIdNumber;
   }
 
   ss.seekp(0, std::ios::end);
-  int checksum =NMEAParsing::computeChecksum(ss.str(),1,ss.tellp());
-  ss<<"*"<<std::hex<<std::setfill('0')<< std::setw (2)<<checksum;
+  int checksum = NMEAParsing::computeChecksum(ss.str(), 1, ss.tellp());
+  ss << "*" << std::hex << std::setfill('0') << std::setw(2) << checksum;
 
   return ss.str();
-
 }
 
 //-----------------------------------------------------------------------------
@@ -203,52 +191,52 @@ std::ostream& operator<<(std::ostream & os, const GGAFrame & frame)
   os << "GPS system = " << description(frame.talkerId) << std::endl;
 
   os << "fixTime : ";
-  if(frame.fixTime)
+  if (frame.fixTime)
     os << *frame.fixTime;
   os <<std::endl;
 
   os << "latitude  : ";
-  if(frame.latitude)
-    os <<*frame.latitude;//*180/PI;
-  os <<std::endl;
+  if (frame.latitude)
+    os  << *frame.latitude;  // *180/PI;
+  os  << std::endl;
 
   os << "longitude  : " ;
-  if(frame.longitude)
-    os <<*frame.longitude;//*180/PI;
+  if (frame.longitude)
+    os  << *frame.longitude;  // *180/PI;
   os <<std::endl;
 
   os << "fix quality  : " ;
-  if(frame.fixQuality)
+  if (frame.fixQuality)
     os <<static_cast<int>(*frame.fixQuality);
   os <<std::endl;
 
   os << "number of tracked satellites  : " ;
-  if(frame.numberSatellitesUsedToComputeFix)
+  if (frame.numberSatellitesUsedToComputeFix)
     os <<*frame.numberSatellitesUsedToComputeFix;
   os <<std::endl;
 
   os << "horizontal dilution of precision :  " ;
-  if(frame.horizontalDilutionOfPrecision)
+  if (frame.horizontalDilutionOfPrecision)
     os <<*frame.horizontalDilutionOfPrecision;
   os <<std::endl;
 
   os << "altitude above geoid  : " ;
-  if(frame.altitudeAboveGeoid)
+  if (frame.altitudeAboveGeoid)
     os <<*frame.altitudeAboveGeoid;
   os <<std::endl;
 
   os << "height of the geoid : " ;
-  if(frame.geoidHeight)
+  if (frame.geoidHeight)
     os <<*frame.geoidHeight;
   os <<std::endl;
 
   os << "dgps correction age in seconds  : " ;
-  if(frame.dgpsCorrectionAgeInSecond)
+  if (frame.dgpsCorrectionAgeInSecond)
     os <<*frame.dgpsCorrectionAgeInSecond;
   os <<std::endl;
 
   os << "dgps station id number  : " ;
-  if(frame.dgpsStationIdNumber)
+  if (frame.dgpsStationIdNumber)
     os <<*frame.dgpsStationIdNumber;
   os <<std::endl;
 

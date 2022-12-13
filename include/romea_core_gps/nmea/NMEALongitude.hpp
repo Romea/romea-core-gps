@@ -1,19 +1,19 @@
-#ifndef romea_NMEALongitude_hpp
-#define romea_NMEALongitude_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEALONGITUDE_HPP_
+#define ROMEA_CORE_GPS_NMEA_NMEALONGITUDE_HPP_
 
-//std
+// std
 #include <string>
 
-//romea
-#include "NMEAAngle.hpp"
+// romea
+#include "romea_core_gps/nmea/NMEAAngle.hpp"
 
 namespace romea
 {
 
 enum class LongitudeDirections : int
 {
-  EAST=1,
-  WEST=-1
+  EAST = 1,
+  WEST = -1
 };
 
 using Longitude = NmeaAngle<LongitudeDirections>;
@@ -22,7 +22,6 @@ std::string toString(const LongitudeDirections & direction);
 
 LongitudeDirections toLongitudeDirection(const std::string & stringDirection);
 
+}  // namespace romea
 
-}
-
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEALONGITUDE_HPP_

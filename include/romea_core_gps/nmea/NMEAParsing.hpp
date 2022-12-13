@@ -1,27 +1,24 @@
-#ifndef romea_NMEAParsing_hpp
-#define romea_NMEAParsing_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
+#define ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
 
-//romea
-#include "romea_core_common/time/Time.hpp"
-#include "NMEAFixTime.hpp"
-#include "NMEAFixDate.hpp"
-#include "NMEATalker.hpp"
-#include "NMEALatitude.hpp"
-#include "NMEALongitude.hpp"
-
-//std
+// std
 #include <vector>
 #include <string>
 
+// romea
+#include "romea_core_common/time/Time.hpp"
+#include "romea_core_gps/nmea/NMEAFixTime.hpp"
+#include "romea_core_gps/nmea/NMEAFixDate.hpp"
+#include "romea_core_gps/nmea/NMEATalker.hpp"
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
+#include "romea_core_gps/nmea/NMEALongitude.hpp"
 
 namespace romea {
 
 class NMEAParsing {
-
 public :
-
   enum class SentenceID{
-    GGA=0,
+    GGA = 0,
     GSV,
     RMC,
     UNSUPPORTED,
@@ -40,7 +37,7 @@ public :
 
   static std::vector<std::string> splitInFields(const std::string & sentence);
 
-  static TalkerId extractTalkerId( const std::string & sentence);
+  static TalkerId extractTalkerId(const std::string & sentence);
 
   static std::string talkerIdToString(const TalkerId & talkerId);
 
@@ -56,7 +53,6 @@ public :
 
   static std::string fixDateToString(const FixDate & fixDate);
 
-
   static Latitude stringToLatitude(const std::string & stringAngle,
                                    const std::string & stringCardinalDirection);
 
@@ -70,10 +66,8 @@ public :
   static FixTime timePointToFixTime(const TimePoint &timepoint);
 
   static FixDate timePointToFixDate(const TimePoint & timepoint);
-
-
 };
 
+}  // namespace romea
 
-}
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_

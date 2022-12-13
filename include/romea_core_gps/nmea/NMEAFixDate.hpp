@@ -1,7 +1,7 @@
-#ifndef romea_NMEAFixDate_hpp
-#define romea_NMEAFixDate_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_NMEAFIXDATE_HPP_ 
+#define ROMEA_CORE_GPS_NMEA_NMEAFIXDATE_HPP_ 
 
-//std
+// std
 #include <string>
 
 namespace romea
@@ -10,7 +10,6 @@ namespace romea
 class FixDate
 {
 public:
-
   FixDate(int years,
           int months,
           int days);
@@ -30,7 +29,6 @@ private :
 
 std::ostream& operator<<(std::ostream & os, const FixDate & fixDate);
 
-}
+}  // namespace romea
 
-
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_NMEAFIXDATE_HPP_ 

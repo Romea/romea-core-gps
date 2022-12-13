@@ -1,36 +1,35 @@
-#ifndef romea_RMCFrame_hpp
-#define romea_RMCFrame_hpp
+#ifndef ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_
+#define ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_
 
-//romea
-#include "NMEALatitude.hpp"
-#include "NMEALongitude.hpp"
-#include "NMEAFixQuality.hpp"
-#include "NMEAFixTime.hpp"
-#include "NMEAFixDate.hpp"
-#include "NMEATalker.hpp"
-
-//std
+// std
 #include <optional>
 #include <string>
 #include <memory>
 #include <ostream>
 
+// romea
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
+#include "romea_core_gps/nmea/NMEALongitude.hpp"
+#include "romea_core_gps/nmea/NMEAFixQuality.hpp"
+#include "romea_core_gps/nmea/NMEAFixTime.hpp"
+#include "romea_core_gps/nmea/NMEAFixDate.hpp"
+#include "romea_core_gps/nmea/NMEATalker.hpp"
+
+
 namespace romea {
 
 struct RMCFrame
 {
-
   enum class Status {
-    Active=0,
+    Active = 0,
     Void
   };
 
-
-  using Ptr =std::shared_ptr<RMCFrame> ;
+  using Ptr = std::shared_ptr<RMCFrame> ;
 
   RMCFrame();
 
-  RMCFrame(const std::string & nmeaRMCSentence);
+  explicit RMCFrame(const std::string & nmeaRMCSentence);
 
   TalkerId talkerId;
   std::optional<FixTime> fixTime;
@@ -44,7 +43,6 @@ struct RMCFrame
   std::optional<FixQuality> fixQuality;
 
   std::string toNMEA() const;
-
 };
 
 std::ostream& operator<<(std::ostream & os, const RMCFrame & frame);
@@ -54,6 +52,6 @@ double trackAngleToCourseAngle(const double &trackAngle,
                                const double &vehiclelLinearSpeed);
 
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_

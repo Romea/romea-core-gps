@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_gps/reliability/SNRDistribution.hpp"
 
-//std
+// std
 #include <cassert>
 
 namespace romea {
@@ -17,15 +17,15 @@ SNRDistribution::SNRDistribution():
 SNRDistribution::SNRDistribution(const std::vector<HalfNormalDistribution> & snrDistribution):
   snrDistribution_(snrDistribution)
 {
-  assert(snrDistribution_.size()==91);
+  assert(snrDistribution_.size() == 91);
 }
 
 //--------------------------------------------------------------------------
 double SNRDistribution::computeSNRConfidence(const unsigned short & elevation,
-                                                         const unsigned short &snr) const
+                                             const unsigned short &snr) const
 {
-  assert(snrDistribution_.size()==91);
+  assert(snrDistribution_.size() == 91);
   return elevation == 0 ? 0 : snrDistribution_[elevation](snr);
 }
 
-}
+}  // namespace romea
