@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_GPS_NMEA_GGAFRAME_HPP_
-#define ROMEA_CORE_GPS_NMEA_GGAFRAME_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_GPS__NMEA__GGAFRAME_HPP_
+#define ROMEA_CORE_GPS__NMEA__GGAFRAME_HPP_
 
 // std
 #include <optional>
@@ -15,15 +18,16 @@
 #include "romea_core_gps/nmea/NMEATalker.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 struct GGAFrame
 {
-  using Ptr = std::shared_ptr<GGAFrame> ;
+  using Ptr = std::shared_ptr<GGAFrame>;
 
   GGAFrame();
 
-  explicit GGAFrame(const std::string &nmeaGGASentence);
+  explicit GGAFrame(const std::string & nmeaGGASentence);
 
   TalkerId talkerId;
   std::optional<FixTime> fixTime;
@@ -40,8 +44,8 @@ struct GGAFrame
   std::string toNMEA() const;
 };
 
-std::ostream& operator<<(std::ostream & os, const GGAFrame & frame);
+std::ostream & operator<<(std::ostream & os, const GGAFrame & frame);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_GGAFRAME_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__GGAFRAME_HPP_

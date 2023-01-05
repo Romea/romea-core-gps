@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #ifndef ROMEA_CORE_GPS_NMEA_NMEALATITUDE_HPP_
 #define ROMEA_CORE_GPS_NMEA_NMEALATITUDE_HPP_
 
@@ -19,7 +22,7 @@ enum class LatitudeDirections : int
 
 using Latitude = NmeaAngle<LatitudeDirections>;
 
-std::string toString(const LatitudeDirections &direction);
+std::string toString(const LatitudeDirections & direction);
 
 LatitudeDirections toLatitudeDirection(const std::string & stringDirection);
 

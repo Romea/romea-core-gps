@@ -1,25 +1,33 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// std
+#include <string>
+
+// romea
 #include "romea_core_gps/nmea/NMEATalker.hpp"
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
 std::string description(const TalkerId & talkerId)
 {
-  switch (talkerId){
-    case TalkerId::GN :
+  switch (talkerId) {
+    case TalkerId::GN:
       return "Global Navigation Satellite Systems";
       break;
-    case TalkerId::GP :
+    case TalkerId::GP:
       return "American Navstar Global Position System";
       break;
-    case TalkerId::GL :
+    case TalkerId::GL:
       return "Russian Glonass Global Position System";
       break;
-    case TalkerId::GA :
+    case TalkerId::GA:
       return "European Galileo Global Position System";
       break;
-    case TalkerId::GB :
-    case TalkerId::BD :
+    case TalkerId::GB:
+    case TalkerId::BD:
       return " Beidou Global Position System ";
       break;
     default:
@@ -30,32 +38,31 @@ std::string description(const TalkerId & talkerId)
 //-----------------------------------------------------------------------------
 std::string acronym(const TalkerId & talkerId)
 {
-    switch(talkerId)
-    {
-    case TalkerId::GN :
+  switch (talkerId) {
+    case TalkerId::GN:
       return "GNSS";
       break;
-    case TalkerId::GA :
+    case TalkerId::GA:
       return "GALILEO";
       break;
-    case TalkerId::GP :
+    case TalkerId::GP:
       return "NAVSTAR";
       break;
-    case TalkerId::GL :
+    case TalkerId::GL:
       return "GLONASS";
       break;
-    case TalkerId::BD :
-    case TalkerId::GB :
+    case TalkerId::BD:
+    case TalkerId::GB:
       return "BEIDOU";
       break;
     default:
       return "Unknown";
       break;
-    }
+  }
 }
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream & os, const TalkerId & talkerId)
+std::ostream & operator<<(std::ostream & os, const TalkerId & talkerId)
 {
   os << acronym(talkerId);
   return os;

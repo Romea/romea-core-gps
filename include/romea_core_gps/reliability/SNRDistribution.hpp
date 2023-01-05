@@ -1,5 +1,9 @@
-#ifndef INCLUDE_ROMEA_CORE_GPS_RELIABILITY_SNRDISTRIBUTION_HPP_
-#define INCLUDE_ROMEA_CORE_GPS_RELIABILITY_SNRDISTRIBUTION_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+
+#ifndef ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
+#define ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
 
 // std
 #include <vector>
@@ -27,4 +31,4 @@ protected :
 
 }  // namespace romea
 
-#endif  // INCLUDE_ROMEA_CORE_GPS_RELIABILITY_SNRDISTRIBUTION_HPP_
+#endif  // ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_

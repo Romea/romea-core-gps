@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #ifndef ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
 #define ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
 
@@ -13,11 +16,14 @@
 #include "romea_core_gps/nmea/NMEALatitude.hpp"
 #include "romea_core_gps/nmea/NMEALongitude.hpp"
 
-namespace romea {
+namespace romea
+{
 
-class NMEAParsing {
-public :
-  enum class SentenceID{
+class NMEAParsing
+{
+public:
+  enum class SentenceID
+  {
     GGA = 0,
     GSV,
     RMC,
@@ -31,9 +37,10 @@ public :
 
   static int computeChecksum(const std::string & sentence);
 
-  static int computeChecksum(const std::string & sentence,
-                             const size_t & firstCharacterPosition,
-                             const size_t & lastCharacterPosition);
+  static int computeChecksum(
+    const std::string & sentence,
+    const size_t & firstCharacterPosition,
+    const size_t & lastCharacterPosition);
 
   static std::vector<std::string> splitInFields(const std::string & sentence);
 
@@ -53,17 +60,19 @@ public :
 
   static std::string fixDateToString(const FixDate & fixDate);
 
-  static Latitude stringToLatitude(const std::string & stringAngle,
-                                   const std::string & stringCardinalDirection);
+  static Latitude stringToLatitude(
+    const std::string & stringAngle,
+    const std::string & stringCardinalDirection);
 
   static std::string latitudeToString(const Latitude & latitude);
 
-  static Longitude stringToLongitude(const std::string & stringAngle,
-                                     const std::string & stringCardinalDirection);
+  static Longitude stringToLongitude(
+    const std::string & stringAngle,
+    const std::string & stringCardinalDirection);
 
   static std::string longitudeToString(const Longitude & longitude);
 
-  static FixTime timePointToFixTime(const TimePoint &timepoint);
+  static FixTime timePointToFixTime(const TimePoint & timepoint);
 
   static FixDate timePointToFixDate(const TimePoint & timepoint);
 };

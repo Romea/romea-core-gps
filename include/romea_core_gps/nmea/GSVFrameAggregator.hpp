@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_
-#define ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE__GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
+#define ROMEA_CORE__GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
 
 // stl
 #include <deque>
@@ -9,9 +12,11 @@
 #include "romea_core_gps/nmea/GSVFrame.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
-class GSVFrameAggregator {
+class GSVFrameAggregator
+{
 public:
   using SatellitesInfo = std::deque<GSVFrame::SatelliteInfo>;
 
@@ -22,8 +27,7 @@ public:
 
   const SatellitesInfo & getSatellitesInfo(const TalkerId & systemID)const;
 
-private :
-
+private:
   std::map<TalkerId, SatellitesInfo> satellitesInfo_;
 };
 

@@ -1,9 +1,31 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // gtest
 #include <gtest/gtest.h>
 
 // romea
 #include <romea_core_gps/GPSReceiver.hpp>
+
+// std
 #include <iostream>
+#include <limits>
+#include <string>
+#include <list>
+
+TEST(TestGPS, testEUREs)
+{
+  romea::GPSReceiverEUREs EUREs;
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::GPS_FIX), 3.0);
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::PPS_FIX), 3.0);
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::DGPS_FIX), 0.7);
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::FLOAT_RTK_FIX), 0.25);
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::RTK_FIX), 0.03);
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::INVALID_FIX), std::numeric_limits<double>::max());
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::FixQuality::SIMULATION_FIX), 0.03);
+  EXPECT_ANY_THROW(EUREs.get(romea::FixQuality::MANUAL_FIX));
+  EXPECT_ANY_THROW(EUREs.get(romea::FixQuality::ESTIMATED_FIX));
+}
 
 TEST(TestGPS, testLatitude)
 {
@@ -28,7 +50,6 @@ TEST(TestGPS, testLatitude)
     EXPECT_EQ(latitude.getMinutes(), latitude2.getMinutes());
     EXPECT_NEAR(latitude.getSeconds(), latitude2.getSeconds(), 0.00001);
   }
-
 }
 
 TEST(TestGPS, testLongitude)
@@ -77,7 +98,8 @@ TEST(TestGPS, testFixTime)
 TEST(TestGPS, testDecodeGGASentence)
 {
   {
-    std::string ggaSentence = "$GPGGA,120648.80,4533.53366,N,00315.44427,E,2,08,2.17,382.4,M,47.5,M,,0000*5B";
+    std::string ggaSentence =
+      "$GPGGA,120648.80,4533.53366,N,00315.44427,E,2,08,2.17,382.4,M,47.5,M,,0000*5B";
     romea::GGAFrame frame(ggaSentence);
     EXPECT_NEAR(frame.latitude->toDouble(), 0.795153, 0.01);
     EXPECT_NEAR(frame.longitude->toDouble(), 0.0568524, 0.01);
@@ -96,8 +118,9 @@ TEST(TestGPS, testDecodeGGASentence)
     EXPECT_EQ(*frame.geoidHeight, 47.5);
     EXPECT_EQ(*frame.altitudeAboveGeoid, 382.4);
     EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(), false);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),
-              romea::NMEAParsing::SentenceID::GGA);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(ggaSentence),
+      romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
 
     std::cout << ggaSentence << std::endl;
@@ -116,8 +139,9 @@ TEST(TestGPS, testDecodeGGASentence)
     EXPECT_EQ(frame.geoidHeight.has_value(), false);
     EXPECT_EQ(frame.altitudeAboveGeoid.has_value(), false);
     EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(), false);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),
-              romea::NMEAParsing::SentenceID::GGA);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(ggaSentence),
+      romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
 
     std::cout << ggaSentence << std::endl;
@@ -126,7 +150,7 @@ TEST(TestGPS, testDecodeGGASentence)
   }
 
   {
-    std::string ggaSentence =  "$GPGGA,091641.70,,,,,5,,00.0,,M,,M,01,*5E";
+    std::string ggaSentence = "$GPGGA,091641.70,,,,,5,,00.0,,M,,M,01,*5E";
     romea::GGAFrame frame(ggaSentence);
 
     std::cout << ggaSentence << std::endl;
@@ -141,23 +165,26 @@ TEST(TestGPS, testDecodeGGASentence)
     EXPECT_EQ(frame.geoidHeight.has_value(), false);
     EXPECT_EQ(frame.altitudeAboveGeoid.has_value(), false);
     EXPECT_EQ(frame.dgpsCorrectionAgeInSecond.has_value(), true);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(ggaSentence),
-              romea::NMEAParsing::SentenceID::GGA);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(ggaSentence),
+      romea::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
- }
+  }
 }
 
 TEST(TestGPS, testDecodeRMCSentence)
 {
-  std::string rmcSentence = "$GPRMC,090433.00,A,4546.4918963,N,00308.7532503,E,0.0,0.0,111213,0.3,E,D*3A";
+  std::string rmcSentence =
+    "$GPRMC,090433.00,A,4546.4918963,N,00308.7532503,E,0.0,0.0,111213,0.3,E,D*3A";
   romea::RMCFrame frame(rmcSentence);
   EXPECT_NEAR(frame.latitude->toDouble(), 0.798922, 0.01);
   EXPECT_NEAR(frame.longitude->toDouble(), 0.0549061, 0.01);
   EXPECT_NEAR(*frame.speedOverGroundInMeterPerSecond, 0, 0.01);
   EXPECT_NEAR(*frame.trackAngleTrue, 0, 0.01);
   EXPECT_NEAR(*frame.magneticDeviation, 0.00523599, 0.0001);
-  EXPECT_EQ(romea::NMEAParsing::extractSentenceId(rmcSentence),
-            romea::NMEAParsing::SentenceID::RMC);
+  EXPECT_EQ(
+    romea::NMEAParsing::extractSentenceId(rmcSentence),
+    romea::NMEAParsing::SentenceID::RMC);
   EXPECT_EQ(romea::RMCFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
 
   std::cout << rmcSentence << std::endl;
@@ -165,8 +192,8 @@ TEST(TestGPS, testDecodeRMCSentence)
   std::cout << frame << std::endl;
 
   romea::TimePoint t = std::chrono::high_resolution_clock::now();
-  std::cout <<"Fix date " << romea::NMEAParsing::timePointToFixDate(t) << std::endl;
-  std::cout <<"Fix time " << romea::NMEAParsing::timePointToFixTime(t) << std::endl;
+  std::cout << "Fix date " << romea::NMEAParsing::timePointToFixDate(t) << std::endl;
+  std::cout << "Fix time " << romea::NMEAParsing::timePointToFixTime(t) << std::endl;
 }
 
 TEST(TestGPS, testDecodeGSVSentence)
@@ -194,8 +221,9 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[3].azimut, 309);
     EXPECT_EQ(frame.satellitesInfo[3].SNR.has_value(), false);
     EXPECT_EQ(frame.signalID.has_value(), false);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),
-              romea::NMEAParsing::SentenceID::GSV);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(gsvSentence),
+      romea::NMEAParsing::SentenceID::GSV);
   }
 
   {
@@ -209,8 +237,9 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[0].azimut, 119);
     EXPECT_EQ(frame.satellitesInfo[0].SNR.has_value(), false);
     EXPECT_EQ(frame.signalID.has_value(), false);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),
-              romea::NMEAParsing::SentenceID::GSV);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(gsvSentence),
+      romea::NMEAParsing::SentenceID::GSV);
   }
 
   {
@@ -219,7 +248,7 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.numberOfSentences, 3);
     EXPECT_EQ(*frame.sentenceNumber, 3);
     EXPECT_EQ(*frame.numberOfSatellitesInView, 10);
-    EXPECT_EQ(*frame.satellitesInfo[0].PRNNumber,  83);
+    EXPECT_EQ(*frame.satellitesInfo[0].PRNNumber, 83);
     EXPECT_EQ(*frame.satellitesInfo[0].elevation, 1);
     EXPECT_EQ(*frame.satellitesInfo[0].azimut, 300);
     EXPECT_EQ(frame.satellitesInfo[0].SNR.has_value(), false);
@@ -228,19 +257,22 @@ TEST(TestGPS, testDecodeGSVSentence)
     EXPECT_EQ(*frame.satellitesInfo[1].azimut, 112);
     EXPECT_EQ(frame.satellitesInfo[1].SNR.has_value(), false);
     EXPECT_EQ(frame.signalID.has_value(), false);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),
-              romea::NMEAParsing::SentenceID::GSV);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(gsvSentence),
+      romea::NMEAParsing::SentenceID::GSV);
   }
 
   {
-    std::string gsvSentence="$GAGSV,3,1,09,03,01,036,18,07,61,158,37,08,46,059,38,13,47,117,38,2*7B";
+    std::string gsvSentence =
+      "$GAGSV,3,1,09,03,01,036,18,07,61,158,37,08,46,059,38,13,47,117,38,2*7B";
     romea::GSVFrame frame(gsvSentence);
     EXPECT_EQ(*frame.numberOfSentences, 3);
     EXPECT_EQ(*frame.sentenceNumber, 1);
     EXPECT_EQ(*frame.numberOfSatellitesInView, 9);
     EXPECT_EQ(*frame.signalID, 2);
-    EXPECT_EQ(romea::NMEAParsing::extractSentenceId(gsvSentence),
-              romea::NMEAParsing::SentenceID::GSV);
+    EXPECT_EQ(
+      romea::NMEAParsing::extractSentenceId(gsvSentence),
+      romea::NMEAParsing::SentenceID::GSV);
   }
 }
 
@@ -255,7 +287,7 @@ TEST(TestGPS, testSattellitesInView)
     gps.updateSatellitesViews("$GPGSV,4,3,14,27,43,285,47,29,10,086,36,30,30,089,45,31,06,195,*7D");
     gps.updateSatellitesViews("$GPGSV,4,4,14,33,34,205,,39,33,150,*72");
 
-    const romea::SatellitesInView &satellites = gps.getSatellitesInView();
+    const romea::SatellitesInView & satellites = gps.getSatellitesInView();
     const std::list<romea::TalkerId> talkerIds = satellites.getTalkerIds();
 
     EXPECT_EQ(talkerIds.size(), 1);
@@ -267,15 +299,21 @@ TEST(TestGPS, testSattellitesInView)
   {
     romea::GPSReceiver gps;
 
-    gps.updateSatellitesViews("$GPGSV,4,1,16, 03,31,288,44, 06,54,292,48, 07,03,336,28, 16,70,294,49*70");
-    gps.updateSatellitesViews("$GPGSV,4,2,16, 18,35,122,27, 19,11,274,39, 21,63,066,47, 22,19,158,00*71");
-    gps.updateSatellitesViews("$GPGSV,4,3,16, 27,43,286,46, 29,10,086,40, 30,30,090,42, 31,06,196,00*70");
-    gps.updateSatellitesViews("$GPGSV,4,4,16, 33,34,206,00, 37,35,156,00, 39,33,152,00, 44,10,112,00*72");
-    gps.updateSatellitesViews("$GLGSV,3,1,10, 65,03,010,00, 66,28,052,44, 67,25,112,25, 73,45,300,46*6D");
-    gps.updateSatellitesViews("$GLGSV,3,2,10, 74,09,340,41, 79,04,186,00, 80,42,222,31, 81,19,066,42*61");
+    gps.updateSatellitesViews(
+      "$GPGSV,4,1,16, 03,31,288,44, 06,54,292,48, 07,03,336,28, 16,70,294,49*70");
+    gps.updateSatellitesViews(
+      "$GPGSV,4,2,16, 18,35,122,27, 19,11,274,39, 21,63,066,47, 22,19,158,00*71");
+    gps.updateSatellitesViews(
+      "$GPGSV,4,3,16, 27,43,286,46, 29,10,086,40, 30,30,090,42, 31,06,196,00*70");
+    gps.updateSatellitesViews(
+      "$GPGSV,4,4,16, 33,34,206,00, 37,35,156,00, 39,33,152,00, 44,10,112,00*72");
+    gps.updateSatellitesViews(
+      "$GLGSV,3,1,10, 65,03,010,00, 66,28,052,44, 67,25,112,25, 73,45,300,46*6D");
+    gps.updateSatellitesViews(
+      "$GLGSV,3,2,10, 74,09,340,41, 79,04,186,00, 80,42,222,31, 81,19,066,42*61");
     gps.updateSatellitesViews("$GLGSV,3,3,10, 82,61,022,51, 83,32,276,45*65");
 
-    const romea::SatellitesInView &satellites = gps.getSatellitesInView();
+    const romea::SatellitesInView & satellites = gps.getSatellitesInView();
     const std::list<romea::TalkerId> GPSIds = satellites.getTalkerIds();
 
     EXPECT_EQ(GPSIds.size(), 2);
@@ -318,7 +356,8 @@ TEST(TestGPS, testTalkerIdToAcrnonym)
 }
 
 //-----------------------------------------------------------------------------
-int main(int argc, char **argv){
+int main(int argc, char ** argv)
+{
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

@@ -1,5 +1,11 @@
-#ifndef ROMEA_CORE_GPS_GPSRECEIVER_HPP_
-#define ROMEA_CORE_GPS_GPSRECEIVER_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_GPS__GPSRECEIVER_HPP_
+#define ROMEA_CORE_GPS__GPSRECEIVER_HPP_
+
+// Eigen
+#include <Eigen/Eigen>
 
 // stl
 #include <mutex>
@@ -7,6 +13,7 @@
 #include <string>
 
 // romea
+#include "romea_core_gps/GPSReceiverEUREs.hpp"
 #include "romea_core_gps/nmea/GGAFrame.hpp"
 #include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/nmea/GSVFrame.hpp"
@@ -14,34 +21,31 @@
 #include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
 #include "romea_core_gps/reliability/GPSReliability.hpp"
 
-// Eigen
-#include <Eigen/Eigen>
 
-namespace romea {
+namespace romea
+{
 
 class GPSReceiver
 {
-public :
+public:
 
   GPSReceiver();
 
-  GPSReceiver(const double & GpsFixEure,
-              const double & DGpsFixEure,
-              const double & FloatRtkFixEure,
-              const double & RtkGpsFixEure,
-              const double & SimulationFixEure,
-              const Eigen::Vector3d & antennaBodyPosition = Eigen::Vector3d::Zero());
+  GPSReceiver(
+    const double & GpsFixEure,
+    const double & DGpsFixEure,
+    const double & FloatRtkFixEure,
+    const double & RtkGpsFixEure,
+    const double & SimulationFixEure,
+    const Eigen::Vector3d & antennaBodyPosition = Eigen::Vector3d::Zero());
 
-public :
-
+public:
   void setAntennaBodyPosition(const Eigen::Vector3d & antennaBodyPosition);
   const Eigen::Vector3d & getAntennaBodyPosition() const;
 
-  void setUERE(const FixQuality & fixQuality, const double & UERE);
   const double & getUERE(const FixQuality & fixQuality) const;
 
-public :
-
+public:
   GGAFrame createFrameGGA(const std::string & nmeaGGASentence);
 
   RMCFrame createFrameRMC(const std::string & nmeaRMCSentence);
@@ -54,7 +58,7 @@ public :
 
 protected:
 
-  std::map<FixQuality, double> fixUEREs_;
+  GPSReceiverEUREs fixUEREs_;
 
   mutable std::mutex mutex_;
   GSVFrameAggregator gsvFrameAggregator_;
@@ -67,4 +71,4 @@ protected:
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_GPSRECEIVER_HPP_
+#endif  // ROMEA_CORE_GPS__GPSRECEIVER_HPP_

@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_GPS_RELIABILITY_SATELLITESINVIEW_HPP_ 
-#define ROMEA_CORE_GPS_RELIABILITY_SATELLITESINVIEW_HPP_ 
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_
+#define ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_
 
 // std
 #include <deque>
@@ -11,22 +14,22 @@
 #include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 class SatellitesInView
 {
-public :
+public:
+  using SatellitesInfo = std::deque<GSVFrame::SatelliteInfo>;
 
-  using SatellitesInfo  = std::deque<GSVFrame::SatelliteInfo>;
-
-public :
-
+public:
   SatellitesInView();
 
-  void setSatellitesInfo(const TalkerId & gnssId,
-                         const std::deque<GSVFrame::SatelliteInfo> &satellitesInfo);
+  void setSatellitesInfo(
+    const TalkerId & gnssId,
+    const std::deque<GSVFrame::SatelliteInfo> & satellitesInfo);
 
-  const SatellitesInfo & getSatellitesInfo(const TalkerId & talkerId)const ;
+  const SatellitesInfo & getSatellitesInfo(const TalkerId & talkerId)const;
 
   std::list<TalkerId> getTalkerIds() const;
 
@@ -35,4 +38,5 @@ private:
 };
 
 }  // namespace romea
-#endif  // ROMEA_CORE_GPS_RELIABILITY_SATELLITESINVIEW_HPP_ 
+
+#endif  // ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_

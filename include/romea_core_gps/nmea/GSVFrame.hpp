@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 
-#define ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_GPS__NMEA__GSVFRAME_HPP_
+#define ROMEA_CORE_GPS__NMEA__GSVFRAME_HPP_
 
 // std
 #include <optional>
@@ -12,12 +15,14 @@
 #include "romea_core_gps/nmea/NMEATalker.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 
 struct GSVFrame
 {
-  struct SatelliteInfo {
+  struct SatelliteInfo
+  {
     SatelliteInfo();
     std::optional<unsigned short> PRNNumber;
     std::optional<unsigned short> elevation;
@@ -25,7 +30,7 @@ struct GSVFrame
     std::optional<unsigned short> SNR;
   };
 
-  using Ptr = std::shared_ptr<GSVFrame> ;
+  using Ptr = std::shared_ptr<GSVFrame>;
 
   GSVFrame();
 
@@ -39,8 +44,8 @@ struct GSVFrame
   std::deque<SatelliteInfo> satellitesInfo;
 };
 
-std::ostream& operator<<(std::ostream & os, const GSVFrame & frame);
+std::ostream & operator<<(std::ostream & os, const GSVFrame & frame);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_GSVFRAME_HPP_ 
+#endif  // ROMEA_CORE_GPS__NMEA__GSVFRAME_HPP_

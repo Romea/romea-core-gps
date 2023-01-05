@@ -1,21 +1,24 @@
-#ifndef ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_
-#define ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
 
-namespace romea {
+#ifndef ROMEA_CORE_GPS__RELIABILITY__HALFNORMALDISTRIBUTION_HPP_
+#define ROMEA_CORE_GPS__RELIABILITY__HALFNORMALDISTRIBUTION_HPP_
 
-class HalfNormalDistribution {
-public :
+namespace romea
+{
 
-  HalfNormalDistribution(const double &snrMean, const double &snrVariance);
+class HalfNormalDistribution
+{
+public:
+  HalfNormalDistribution(const double & snrMean, const double & snrVariance);
 
   double operator()(const double & snr) const;
 
-protected :
-
+protected:
   double mean_;
   double var2_;
 };
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_RELIABILITY_HALFNORMALDISTRIBUTION_HPP_
+#endif  // ROMEA_CORE_GPS__RELIABILITY__HALFNORMALDISTRIBUTION_HPP_

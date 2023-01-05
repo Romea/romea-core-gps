@@ -1,7 +1,13 @@
-#include "romea_core_gps/nmea/NMEALatitude.hpp"
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// std
 #include <iomanip>
 #include <cassert>
+#include <string>
 
+// romea
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
 
 namespace romea
 {
@@ -9,10 +15,9 @@ namespace romea
 //-----------------------------------------------------------------------------
 std::string toString(const LatitudeDirections & direction)
 {
-  if (direction == LatitudeDirections::NORTH)
-  {
+  if (direction == LatitudeDirections::NORTH) {
     return "N";
-  }  else {
+  } else {
     return "S";
   }
 }
@@ -20,8 +25,7 @@ std::string toString(const LatitudeDirections & direction)
 //-----------------------------------------------------------------------------
 LatitudeDirections toLatitudeDirection(const std::string & stringDirection)
 {
-  if (stringDirection.compare("N") == 0)
-  {
+  if (stringDirection.compare("N") == 0) {
     return LatitudeDirections::NORTH;
   } else {
     assert(stringDirection.compare("S") == 0);

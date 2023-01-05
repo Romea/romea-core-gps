@@ -1,3 +1,11 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// std
+#include <string>
+#include <vector>
+#include <deque>
+
 // romea
 #include "romea_core_gps/nmea/GSVFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"

@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #ifndef ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
 #define ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
 
@@ -10,12 +13,14 @@ namespace romea
 class FixTime
 {
 public:
-  FixTime(int hours,
-          int minutes,
-          double seconds);
+  FixTime(
+    int hours,
+    int minutes,
+    double seconds);
 
-  FixTime(int seconds,
-          int nanoseconds);
+  FixTime(
+    int seconds,
+    int nanoseconds);
 
   int getHours()const;
 
@@ -25,14 +30,13 @@ public:
 
   std::string toString()const;
 
-private :
-
+private:
   int hours_;
   int minutes_;
   double seconds_;
 };
 
-std::ostream& operator<<(std::ostream & os, const FixTime & FixTime);
+std::ostream & operator<<(std::ostream & os, const FixTime & FixTime);
 
 }  // namespace romea
 

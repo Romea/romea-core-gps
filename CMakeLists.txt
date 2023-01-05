@@ -11,6 +11,7 @@ find_package(romea_core_common REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
       src/GPSReceiver.cpp
+      src/GPSReceiverEUREs.cpp
       src/nmea/GGAFrame.cpp
       src/nmea/RMCFrame.cpp
       src/nmea/GSVFrame.cpp

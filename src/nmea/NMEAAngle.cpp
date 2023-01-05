@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_gps/nmea/NMEAAngle.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
 #include "romea_core_gps/nmea/NMEALatitude.hpp"

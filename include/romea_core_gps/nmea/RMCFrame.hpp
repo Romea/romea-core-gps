@@ -1,5 +1,5 @@
-#ifndef ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_
-#define ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_
+#ifndef ROMEA_CORE_GPS__NMEA__RMCFRAME_HPP_
+#define ROMEA_CORE_GPS__NMEA__RMCFRAME_HPP_
 
 // std
 #include <optional>
@@ -16,16 +16,18 @@
 #include "romea_core_gps/nmea/NMEATalker.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 struct RMCFrame
 {
-  enum class Status {
+  enum class Status
+  {
     Active = 0,
     Void
   };
 
-  using Ptr = std::shared_ptr<RMCFrame> ;
+  using Ptr = std::shared_ptr<RMCFrame>;
 
   RMCFrame();
 
@@ -45,13 +47,14 @@ struct RMCFrame
   std::string toNMEA() const;
 };
 
-std::ostream& operator<<(std::ostream & os, const RMCFrame & frame);
+std::ostream & operator<<(std::ostream & os, const RMCFrame & frame);
 
 
-double trackAngleToCourseAngle(const double &trackAngle,
-                               const double &vehiclelLinearSpeed);
+double trackAngleToCourseAngle(
+  const double & trackAngle,
+  const double & vehiclelLinearSpeed);
 
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_RMCFRAME_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__RMCFRAME_HPP_
