@@ -29,6 +29,7 @@
 #include "romea_core_gps/nmea/GGAFrame.hpp"
 #include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/nmea/GSVFrame.hpp"
+#include "romea_core_gps/nmea/HDTFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
 #include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
 #include "romea_core_gps/reliability/GPSReliability.hpp"
@@ -40,7 +41,6 @@ namespace romea
 class GPSReceiver
 {
 public:
-
   GPSReceiver();
 
   GPSReceiver(
@@ -62,6 +62,8 @@ public:
 
   RMCFrame createFrameRMC(const std::string & nmeaRMCSentence);
 
+  HDTFrame createFrameHDT(const std::string & nmeaHDTSentence);
+
   bool updateSatellitesViews(const std::string & nmeaGSVFrame);
 
   SatellitesInView getSatellitesInView()const;
@@ -69,7 +71,6 @@ public:
   double getReliability()const;
 
 protected:
-
   GPSReceiverEUREs fixUEREs_;
 
   mutable std::mutex mutex_;

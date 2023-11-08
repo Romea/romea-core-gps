@@ -94,6 +94,12 @@ RMCFrame GPSReceiver::createFrameRMC(const std::string & nmeaRMCSentence)
 }
 
 //--------------------------------------------------------------------------
+HDTFrame GPSReceiver::createFrameHDT(const std::string & nmeaHDTSentence)
+{
+  return HDTFrame(nmeaHDTSentence);
+}
+
+//--------------------------------------------------------------------------
 bool GPSReceiver::updateSatellitesViews(const std::string & nmeaGSVSentence)
 {
   GSVFrame gsvFrame(nmeaGSVSentence);

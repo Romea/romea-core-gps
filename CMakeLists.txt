@@ -15,6 +15,7 @@ add_library(${PROJECT_NAME} SHARED
       src/nmea/GGAFrame.cpp
       src/nmea/RMCFrame.cpp
       src/nmea/GSVFrame.cpp
+      src/nmea/HDTFrame.cpp
       src/nmea/GSVFrameAggregator.cpp
       src/nmea/NMEAParsing.cpp
       src/nmea/NMEAFixTime.cpp

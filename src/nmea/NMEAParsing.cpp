@@ -38,7 +38,7 @@ const size_t MINIMAL_NUMBER_OF_CHARACTERS_IN_SENTENCE = 10;
 const size_t CHECKSUM_BEGIN_POSITION = 1;
 const size_t CHECKSUM_LENGTH_INCLUDING_WILDCARD = 3;
 
-const std::vector<std::string> SENTENCE_IDS = {"GGA", "GSV", "RMC"};
+const std::vector<std::string> SENTENCE_IDS = {"GGA", "GSV", "HDT", "RMC"};
 
 }
 
@@ -165,10 +165,13 @@ std::string NMEAParsing::sentenceIdToString(const SentenceID & sentenceId)
       return "GGA";
       break;
     case SentenceID::RMC:
-      return "GGA";
+      return "RMC";
       break;
     case SentenceID::GSV:
-      return "GGA";
+      return "GSV";
+      break;
+    case SentenceID::HDT:
+      return "HDT";
       break;
     default:
       return "";

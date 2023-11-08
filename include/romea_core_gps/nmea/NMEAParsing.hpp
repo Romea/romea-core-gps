@@ -38,6 +38,7 @@ public:
   {
     GGA = 0,
     GSV,
+    HDT,
     RMC,
     UNSUPPORTED,
     EMPTY
