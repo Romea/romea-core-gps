@@ -48,8 +48,8 @@ void GPSReliability::setSNRDistribution(
 //--------------------------------------------------------------------------
 double GPSReliability::computeReliabilty(const SatellitesInView & satellitesInView)
 {
-  unsigned short numberOfVisibleSatellites = 0;
-  unsigned short numberOfHiddenSatellites = 0;
+  uint16_t numberOfVisibleSatellites = 0;
+  uint16_t numberOfHiddenSatellites = 0;
   float snrReliability = 0;
   float occlusionReliability = 0;
 

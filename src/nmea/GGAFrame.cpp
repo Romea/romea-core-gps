@@ -263,4 +263,4 @@ std::ostream & operator<<(std::ostream & os, const GGAFrame & frame)
   return os;
 }
 
-}
+}  // namespace romea

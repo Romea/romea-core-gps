@@ -30,9 +30,9 @@
 namespace
 {
 
-const std::string PREFIX = "$G";
-const std::string COMMA = ",";
-const std::string WILDCARD = "*";
+const char PREFIX[] = "$G";
+const char COMMA[] = ",";
+const char WILDCARD[] = "*";
 
 const size_t MINIMAL_NUMBER_OF_CHARACTERS_IN_SENTENCE = 10;
 const size_t CHECKSUM_BEGIN_POSITION = 1;
@@ -40,7 +40,7 @@ const size_t CHECKSUM_LENGTH_INCLUDING_WILDCARD = 3;
 
 const std::vector<std::string> SENTENCE_IDS = {"GGA", "GSV", "HDT", "RMC"};
 
-}
+}  // namespace
 
 namespace romea
 {

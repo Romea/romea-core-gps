@@ -13,31 +13,30 @@
 // limitations under the License.
 
 
-
 #ifndef ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
 #define ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
 
 // std
 #include <vector>
+#include <cstdint>
 
 // romea
 #include "HalfNormalDistribution.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 class SNRDistribution
 {
-public :
-
+public:
   SNRDistribution();
 
   explicit SNRDistribution(const std::vector<HalfNormalDistribution> & snrDistribution);
 
-  double computeSNRConfidence(const unsigned short & elevation, const unsigned short &snr) const;
+  double computeSNRConfidence(const uint16_t & elevation, const uint16_t & snr) const;
 
-protected :
-
+protected:
   std::vector<HalfNormalDistribution> snrDistribution_;
 };
 

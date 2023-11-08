@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_GPS_NMEA_NMEALATITUDE_HPP_
-#define ROMEA_CORE_GPS_NMEA_NMEALATITUDE_HPP_
+#ifndef ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_
+#define ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_
 
 // std
 #include <string>
@@ -40,4 +40,4 @@ LatitudeDirections toLatitudeDirection(const std::string & stringDirection);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_NMEALATITUDE_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_

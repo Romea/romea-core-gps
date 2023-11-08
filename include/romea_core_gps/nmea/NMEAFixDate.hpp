@@ -46,4 +46,4 @@ std::ostream & operator<<(std::ostream & os, const FixDate & fixDate);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_NMEAFIXDATE_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__NMEAFIXDATE_HPP_

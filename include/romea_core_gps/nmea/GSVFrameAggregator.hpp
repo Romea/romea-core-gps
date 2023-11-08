@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE__GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
-#define ROMEA_CORE__GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
+#ifndef ROMEA_CORE_GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
+#define ROMEA_CORE_GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
 
 // stl
 #include <deque>
@@ -45,4 +45,4 @@ private:
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_GSVFRAMEAGGREGATOR_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_

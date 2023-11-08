@@ -46,12 +46,12 @@ struct GGAFrame
   std::optional<Latitude> latitude;
   std::optional<Longitude> longitude;
   std::optional<FixQuality> fixQuality;
-  std::optional<unsigned short> numberSatellitesUsedToComputeFix;
+  std::optional<uint16_t> numberSatellitesUsedToComputeFix;
   std::optional<double> horizontalDilutionOfPrecision;
   std::optional<double> altitudeAboveGeoid;
   std::optional<double> geoidHeight;
   std::optional<double> dgpsCorrectionAgeInSecond;
-  std::optional<unsigned short> dgpsStationIdNumber;
+  std::optional<uint16_t> dgpsStationIdNumber;
 
   std::string toNMEA() const;
 };

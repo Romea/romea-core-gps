@@ -13,17 +13,18 @@
 // limitations under the License.
 
 
-// gtest
-#include <gtest/gtest.h>
-
-// romea
-#include <romea_core_gps/GPSReceiver.hpp>
-
 // std
 #include <iostream>
 #include <limits>
 #include <string>
 #include <list>
+
+// gtest
+#include "gtest/gtest.h"
+
+// romea
+#include "romea_core_gps/GPSReceiver.hpp"
+
 
 TEST(TestGPS, testEUREs)
 {

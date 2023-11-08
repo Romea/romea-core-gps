@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
-#define ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
+#ifndef ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_
+#define ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_
 
 // std
 #include <vector>
@@ -92,4 +92,4 @@ public:
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_NMEAPARSING_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_

@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
-#define ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
+#ifndef ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_
+#define ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_
 
 // std
 #include <string>
@@ -52,4 +52,4 @@ std::ostream & operator<<(std::ostream & os, const FixTime & FixTime);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_GPS_NMEA_NMEAFIXTIME_HPP_
+#endif  // ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_

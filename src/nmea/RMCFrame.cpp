@@ -13,9 +13,6 @@
 // limitations under the License.
 
 
-// romea core
-#include <romea_core_common/math/EulerAngles.hpp>
-
 // std
 #include <iostream>
 #include <cmath>
@@ -23,6 +20,7 @@
 #include <string>
 
 // romea
+#include "romea_core_common/math/EulerAngles.hpp"
 #include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
 
@@ -164,20 +162,20 @@ std::string RMCFrame::toNMEA() const
   // ENcode speed over ground
   if (speedOverGroundInMeterPerSecond) {
     ss << std::setfill('0') << std::setw(3) <<
-      int(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND);
+      static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND);
     ss << ".";
     ss << std::setfill('0') << std::setw(1) <<
-      int(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND * 10) % 10;
+      static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND * 10) % 10;
   }
   ss << ",";
 
   // Encode track angle
   if (trackAngleTrue) {
     ss << std::setfill('0') << std::setw(3) <<
-      int(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180);
+      static_cast<int>(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180);
     ss << ".";
     ss << std::setfill('0') << std::setw(1) <<
-      int(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
+      static_cast<int>(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
   }
   ss << ",";
 

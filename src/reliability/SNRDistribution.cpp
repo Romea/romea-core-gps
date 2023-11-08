@@ -39,8 +39,8 @@ SNRDistribution::SNRDistribution(const std::vector<HalfNormalDistribution> & snr
 
 //--------------------------------------------------------------------------
 double SNRDistribution::computeSNRConfidence(
-  const unsigned short & elevation,
-  const unsigned short & snr) const
+  const uint16_t & elevation,
+  const uint16_t & snr) const
 {
   assert(snrDistribution_.size() == 91);
   return elevation == 0 ? 0 : snrDistribution_[elevation](snr);

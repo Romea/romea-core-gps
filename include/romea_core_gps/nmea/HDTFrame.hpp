@@ -33,7 +33,7 @@ struct HDTFrame
 
   HDTFrame() = default;
 
-  HDTFrame(const std::string & nmeaHDTSentence);
+  explicit HDTFrame(const std::string & nmeaHDTSentence);
 
   TalkerId talkerId = TalkerId::UNSUPPORTED;
   std::optional<double> heading;

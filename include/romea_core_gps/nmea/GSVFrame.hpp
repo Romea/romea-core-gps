@@ -36,10 +36,10 @@ struct GSVFrame
   struct SatelliteInfo
   {
     SatelliteInfo();
-    std::optional<unsigned short> PRNNumber;
-    std::optional<unsigned short> elevation;
-    std::optional<unsigned short> azimut;
-    std::optional<unsigned short> SNR;
+    std::optional<uint16_t> PRNNumber;
+    std::optional<uint16_t> elevation;
+    std::optional<uint16_t> azimut;
+    std::optional<uint16_t> SNR;
   };
 
   using Ptr = std::shared_ptr<GSVFrame>;
@@ -49,10 +49,10 @@ struct GSVFrame
   explicit GSVFrame(const std::string & nmeaGSVSentence);
 
   TalkerId talkerID;
-  std::optional<unsigned short> numberOfSentences;
-  std::optional<unsigned short> sentenceNumber;
-  std::optional<unsigned short> numberOfSatellitesInView;
-  std::optional<unsigned short> signalID;
+  std::optional<uint16_t> numberOfSentences;
+  std::optional<uint16_t> sentenceNumber;
+  std::optional<uint16_t> numberOfSatellitesInView;
+  std::optional<uint16_t> signalID;
   std::deque<SatelliteInfo> satellitesInfo;
 };
 
