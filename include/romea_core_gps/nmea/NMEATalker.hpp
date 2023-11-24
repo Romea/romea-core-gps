@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 enum class TalkerId
 {
@@ -40,6 +42,7 @@ std::string acronym(const TalkerId & talkerId);
 
 std::ostream & operator<<(std::ostream & os, const TalkerId & talkerId);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEATALKER_HPP_

@@ -29,6 +29,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 struct GSVFrame
@@ -58,6 +60,7 @@ struct GSVFrame
 
 std::ostream & operator<<(std::ostream & os, const GSVFrame & frame);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__GSVFRAME_HPP_

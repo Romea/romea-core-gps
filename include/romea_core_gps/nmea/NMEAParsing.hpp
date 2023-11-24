@@ -30,6 +30,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class NMEAParsing
 {
@@ -90,6 +92,7 @@ public:
   static FixDate timePointToFixDate(const TimePoint & timepoint);
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_

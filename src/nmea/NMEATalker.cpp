@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 std::string description(const TalkerId & talkerId)
@@ -80,4 +82,5 @@ std::ostream & operator<<(std::ostream & os, const TalkerId & talkerId)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

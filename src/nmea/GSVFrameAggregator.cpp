@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 GSVFrameAggregator::GSVFrameAggregator()
@@ -67,4 +69,5 @@ GSVFrameAggregator::getSatellitesInfo(const TalkerId & systemID)const
   return (*I).second;
 }
 
+}  // namespace  core
 }  // namespace  romea

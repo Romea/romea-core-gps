@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct HDTFrame
 {
@@ -46,6 +48,7 @@ std::ostream & operator<<(std::ostream & os, const HDTFrame & frame);
 
 double headingToCourseAngle(double heading);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__HDTFRAME_HPP_

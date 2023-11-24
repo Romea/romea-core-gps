@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 HalfNormalDistribution::HalfNormalDistribution(
@@ -41,4 +43,5 @@ double HalfNormalDistribution::operator()(const double & snr) const
   return std::exp(-(snr - mean_) * (snr - mean_) / var2_);
 }
 
+}  // namespace core
 }  // namespace romea

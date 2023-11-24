@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 enum class FixQuality
 {
@@ -44,6 +46,7 @@ std::ostream & operator<<(std::ostream & os, const FixQuality & FixQuality);
 
 bool operator>=(FixQuality fixQuality1, FixQuality fixQuality2);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEAFIXQUALITY_HPP_

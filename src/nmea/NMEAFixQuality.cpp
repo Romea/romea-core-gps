@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 std::string description(const FixQuality & fixQuality)
@@ -134,4 +136,5 @@ std::ostream & operator<<(std::ostream & os, const FixQuality & FixQuality)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

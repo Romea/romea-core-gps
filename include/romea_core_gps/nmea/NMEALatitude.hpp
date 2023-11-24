@@ -25,6 +25,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 enum class LatitudeDirections : int
 {
@@ -38,6 +40,7 @@ std::string toString(const LatitudeDirections & direction);
 
 LatitudeDirections toLatitudeDirection(const std::string & stringDirection);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_

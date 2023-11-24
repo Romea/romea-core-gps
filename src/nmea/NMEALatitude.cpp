@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 std::string toString(const LatitudeDirections & direction)
@@ -45,4 +47,5 @@ LatitudeDirections toLatitudeDirection(const std::string & stringDirection)
   }
 }
 
+}  // namespace core
 }  // namespace romea

@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 FixTime::FixTime(
@@ -93,4 +95,5 @@ std::ostream & operator<<(std::ostream & os, const FixTime & fixTime)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

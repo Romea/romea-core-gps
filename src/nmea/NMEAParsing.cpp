@@ -44,6 +44,8 @@ const std::vector<std::string> SENTENCE_IDS = {"GGA", "GSV", "HDT", "RMC"};
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 void NMEAParsing::removeCRLF(std::string & sentence)
@@ -331,4 +333,5 @@ FixDate NMEAParsing::timePointToFixDate(const TimePoint & timepoint)
   return FixDate(tm.tm_year % 100, tm.tm_mon + 1, tm.tm_mday);
 }
 
+}  // namespace core
 }  // namespace romea

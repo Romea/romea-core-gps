@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 FixDate::FixDate(
@@ -68,4 +70,5 @@ std::ostream & operator<<(std::ostream & os, const FixDate & fixDate)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

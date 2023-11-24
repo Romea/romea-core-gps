@@ -35,6 +35,8 @@ const double DEFAULT_UERE_SIMULATION_FIX = DEFAULT_UERE_RTK_FIX;
 
 namespace romea
 {
+namespace core
+{
 
 
 GPSReceiverEUREs::GPSReceiverEUREs()
@@ -64,8 +66,7 @@ const double & GPSReceiverEUREs::get(const FixQuality & fixQuality) const
   // TODO(jean) c++20 replace by fixUEREs_.contains
   auto it = fixUEREs_.find(fixQuality);
 
-  if ( it == fixUEREs_.end() )
-  {
+  if (it == fixUEREs_.end() ) {
     std::ostringstream msg;
     msg << " Fix quality : ";
     msg << fixQuality;
@@ -76,4 +77,5 @@ const double & GPSReceiverEUREs::get(const FixQuality & fixQuality) const
   return (*it).second;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class FixTime
 {
@@ -50,6 +52,7 @@ private:
 
 std::ostream & operator<<(std::ostream & os, const FixTime & FixTime);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_

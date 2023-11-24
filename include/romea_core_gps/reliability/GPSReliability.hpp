@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class GPSReliability
 {
@@ -41,6 +43,7 @@ protected:
   std::map<TalkerId, SNRDistribution> snrDistributions_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__RELIABILITY__GPSRELIABILITY_HPP_

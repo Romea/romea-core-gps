@@ -22,27 +22,30 @@
 // romea
 #include "romea_core_gps/nmea/NMEAFixQuality.hpp"
 
-namespace romea {
+namespace romea
+{
+namespace core
+{
 
 class GPSReceiverEUREs
 {
-public :
-
+public:
   GPSReceiverEUREs();
 
-  GPSReceiverEUREs(const double & GpsFixEure,
-                   const double & DGpsFixEure,
-                   const double & FloatRtkFixEure,
-                   const double & RtkGpsFixEure,
-                   const double & SimulationFixEure);
+  GPSReceiverEUREs(
+    const double & GpsFixEure,
+    const double & DGpsFixEure,
+    const double & FloatRtkFixEure,
+    const double & RtkGpsFixEure,
+    const double & SimulationFixEure);
 
   const double & get(const FixQuality & fixQuality) const;
 
-private :
-
+private:
   std::map<FixQuality, double> fixUEREs_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__GPSRECEIVEREURES_HPP_

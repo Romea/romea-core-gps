@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class SNRDistribution
 {
@@ -40,6 +42,7 @@ protected:
   std::vector<HalfNormalDistribution> snrDistribution_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_

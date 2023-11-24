@@ -37,6 +37,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class GPSReceiver
 {
@@ -82,6 +84,7 @@ protected:
   Eigen::Vector3d antennaBodyPosition_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__GPSRECEIVER_HPP_

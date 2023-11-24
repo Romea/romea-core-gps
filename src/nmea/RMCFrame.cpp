@@ -32,6 +32,8 @@ const double KNOT_TO_METER_PER_SECOND = 0.51444444444;
 
 namespace romea
 {
+namespace core
+{
 
 RMCFrame::RMCFrame()
 : talkerId(TalkerId::UNSUPPORTED),
@@ -172,10 +174,10 @@ std::string RMCFrame::toNMEA() const
   // Encode track angle
   if (trackAngleTrue) {
     ss << std::setfill('0') << std::setw(3) <<
-      static_cast<int>(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180);
+      static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180);
     ss << ".";
     ss << std::setfill('0') << std::setw(1) <<
-      static_cast<int>(romea::between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
+      static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
   }
   ss << ",";
 
@@ -284,4 +286,5 @@ std::ostream & operator<<(std::ostream & os, const RMCFrame & frame)
   }
 }
 
+}  // namespace core
 }  // namespace romea

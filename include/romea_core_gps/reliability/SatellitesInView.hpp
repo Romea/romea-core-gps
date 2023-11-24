@@ -28,6 +28,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class SatellitesInView
 {
@@ -49,6 +51,7 @@ private:
   std::map<TalkerId, SatellitesInfo> satellitesInfo_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_

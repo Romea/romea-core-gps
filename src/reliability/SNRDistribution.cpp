@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 SNRDistribution::SNRDistribution()
@@ -46,4 +48,5 @@ double SNRDistribution::computeSNRConfidence(
   return elevation == 0 ? 0 : snrDistribution_[elevation](snr);
 }
 
+}  // namespace core
 }  // namespace romea

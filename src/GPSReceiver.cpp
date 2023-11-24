@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //--------------------------------------------------------------------------
@@ -114,4 +116,5 @@ bool GPSReceiver::updateSatellitesViews(const std::string & nmeaGSVSentence)
   return false;
 }
 
+}  // namespace core
 }  // namespace romea

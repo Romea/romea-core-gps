@@ -32,6 +32,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct GGAFrame
 {
@@ -58,6 +60,7 @@ struct GGAFrame
 
 std::ostream & operator<<(std::ostream & os, const GGAFrame & frame);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__GGAFRAME_HPP_

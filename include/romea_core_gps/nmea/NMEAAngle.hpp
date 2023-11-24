@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 template<class CardinalDirections>
 class NmeaAngle
@@ -71,6 +73,7 @@ std::ostream & operator<<(std::ostream & os, const NmeaAngle<CardinalDirections>
   return os;
 }
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEAANGLE_HPP_

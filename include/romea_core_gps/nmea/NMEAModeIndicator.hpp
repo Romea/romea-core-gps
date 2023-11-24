@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 enum class ModeIndicator
 {
@@ -34,6 +36,7 @@ enum class ModeIndicator
   SIMULATION_MODE
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__NMEA__NMEAMODEINDICATOR_HPP_

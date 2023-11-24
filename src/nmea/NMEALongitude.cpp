@@ -24,12 +24,13 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
-std::string toString(const LongitudeDirections &direction)
+std::string toString(const LongitudeDirections & direction)
 {
-  if (direction == LongitudeDirections::EAST)
-  {
+  if (direction == LongitudeDirections::EAST) {
     return "E";
   } else {
     return "W";
@@ -39,8 +40,7 @@ std::string toString(const LongitudeDirections &direction)
 //-----------------------------------------------------------------------------
 LongitudeDirections toLongitudeDirection(const std::string & stringDirection)
 {
-  if (stringDirection.compare("E") == 0)
-  {
+  if (stringDirection.compare("E") == 0) {
     return LongitudeDirections::EAST;
   } else {
     assert(stringDirection.compare("W") == 0);
@@ -48,4 +48,5 @@ LongitudeDirections toLongitudeDirection(const std::string & stringDirection)
   }
 }
 
+}  // namespace core
 }  // namespace romea

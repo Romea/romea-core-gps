@@ -25,6 +25,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 GGAFrame::GGAFrame()
@@ -263,4 +265,5 @@ std::ostream & operator<<(std::ostream & os, const GGAFrame & frame)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

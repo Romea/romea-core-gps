@@ -24,6 +24,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 HDTFrame::HDTFrame(const std::string & nmeaHDTSentence)
@@ -102,4 +104,5 @@ double headingToCourseAngle(double heading)
   return M_PI_2 - heading;
 }
 
+}  // namespace core
 }  // namespace romea

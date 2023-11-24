@@ -23,7 +23,8 @@
 
 namespace romea
 {
-
+namespace core
+{
 
 //--------------------------------------------------------------------------
 SatellitesInView::SatellitesInView()
@@ -60,4 +61,5 @@ const std::deque<GSVFrame::SatelliteInfo> & SatellitesInView::getSatellitesInfo(
   return (*I).second;
 }
 
+}  // namespace core
 }  // namespace romea

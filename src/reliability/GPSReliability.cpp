@@ -29,6 +29,8 @@ const float MINIMAL_NUMBER_OF_SATELLITES_IN_VIEW = 6;
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 GPSReliability::GPSReliability()
@@ -97,4 +99,5 @@ double GPSReliability::computeReliabilty(const SatellitesInView & satellitesInVi
   return snrReliability * occlusionReliability;
 }
 
+}  // namespace core
 }  // namespace romea

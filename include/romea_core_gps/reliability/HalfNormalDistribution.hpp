@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class HalfNormalDistribution
 {
@@ -31,6 +33,7 @@ protected:
   double var2_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_GPS__RELIABILITY__HALFNORMALDISTRIBUTION_HPP_
