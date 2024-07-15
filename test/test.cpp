@@ -301,7 +301,7 @@ TEST(TestGPS, testSattellitesInView)
   {
     romea::core::GPSReceiver gps;
 
-    gps.updateSatellitesViews("$GPGSV,4,1,14,03,31,286,48,06,54,291,53,07,03,335,35,16,70,294,49*76");
+    gps.updateSatellitesViews("$GPGSV,4,1,14,03,31,286,48,06,54,291,53,07,03,335,35,16,70,294,49*76");  //NOLINT
     gps.updateSatellitesViews("$GPGSV,4,2,14,18,35,121,33,19,11,273,40,21,63,064,47,22,19,157,*71");
     gps.updateSatellitesViews("$GPGSV,4,3,14,27,43,285,47,29,10,086,36,30,30,089,45,31,06,195,*7D");
     gps.updateSatellitesViews("$GPGSV,4,4,14,33,34,205,,39,33,150,*72");

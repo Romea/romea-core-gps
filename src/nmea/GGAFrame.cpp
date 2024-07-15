@@ -14,10 +14,10 @@
 
 
 // std
+#include <optional>
 #include <vector>
 #include <string>
 #include <iostream>
-#include <optional>
 
 // romea
 #include "romea_core_gps/nmea/GGAFrame.hpp"

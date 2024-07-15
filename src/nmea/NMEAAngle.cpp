@@ -44,7 +44,7 @@ NmeaAngle<CardinalDirections>::NmeaAngle(const double & angle)
 : degrees_(0),
   minutes_(0),
   seconds_(0),
-  direction_(static_cast<CardinalDirections>(int(sign(angle))))
+  direction_(static_cast<CardinalDirections>(static_cast<int>(sign(angle))))
 {
   double angleInDegre = std::abs(180. * angle / M_PI);
 

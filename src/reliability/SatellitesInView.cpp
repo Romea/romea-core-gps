@@ -16,6 +16,8 @@
 // std
 #include <typeinfo>
 #include <cassert>
+#include <deque>
+#include <list>
 
 // romea
 #include "romea_core_gps/reliability/SatellitesInView.hpp"
