@@ -1,6 +1,8 @@
+# ROMEA Core GPS Library
+
 ## NMEA Data Parsing and Emulation
 
-This package contains tools to parse and emulate NMEA data coming from GPS reveiver. The following NMEA sentence are supported :
+This library contains tools to parse and emulate NMEA data coming from GPS reveiver. The following NMEA sentence are supported :
 
  - **GGA (Global Positioning System Fix Data)**: Provides essential fix data such as time, position, and fix quality.
  - **RMC (Recommended Minimum Navigation Information)**: Includes the recommended minimum data for navigation, such as position, speed, and time.
