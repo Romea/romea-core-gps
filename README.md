@@ -1,9 +1,13 @@
+## NMEA Data Parsing and Emulation
+
 This package contains tools to parse and emulate NMEA data coming from GPS reveiver. The following NMEA sentence are supported :
 
  - **GGA (Global Positioning System Fix Data)**: Provides essential fix data such as time, position, and fix quality.
  - **RMC (Recommended Minimum Navigation Information)**: Includes the recommended minimum data for navigation, such as position, speed, and time.
  - **GSV (Satellites in View)**: Reports the number of satellites in view, their ID numbers, elevation, azimuth, and signal-to-noise ratio (SNR).
  - **HDT (Heading True)**: Provides the heading (direction) of the mobile relative to true north.
+
+## GPS Fix Reliability Algorithm
 
 This library also includes an algorithm to calculate the reliability of the GPS fix. It does this by evaluating data related to satellites in view:
 
