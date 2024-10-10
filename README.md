@@ -22,7 +22,7 @@ The purpose of this algorithm is to assess the accuracy of the GPS fix by consid
 2. cd worskpace
 3. mkdir src
 4. wget https://raw.githubusercontent.com/Romea/romea-core-gps/refs/heads/main/romea_gps_public.repos
-5. vcs import src < romea_filter_public.repos
+5. vcs import src < romea_gps_public.repos
 6. build packages
    - catkin build for ROS1
    - colcon build for ROS2
