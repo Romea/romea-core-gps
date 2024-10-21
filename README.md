@@ -1,6 +1,6 @@
-# ROMEA Core GPS Library
+# romea_core_gps #
 
-This library contains tools to parse and emulate NMEA data coming from GPS reveiver. The following NMEA sentence are supported :
+This project is a C++ library that provides tools to parse and emulate NMEA data coming from GPS reveiver. The following NMEA sentence are supported :
 
  - **GGA (Global Positioning System Fix Data)**: Provides essential fix data such as time, position, and fix quality.
  - **RMC (Recommended Minimum Navigation Information)**: Includes the recommended minimum data for navigation, such as position, speed, and time.
@@ -47,8 +47,8 @@ This project is released under the Apache License 2.0. See the LICENSE file for 
 
 ## **Authors**
 
-The Romea Core GPS library was developed by **Jean Laneurit** in the context of various research projects carried out at INRAE.
+The romea_core_gps library was developed by **Jean Laneurit** in the context of various research projects carried out at INRAE.
 
 ## **Contact**
 
-If you have any questions or comments about Romea Core GPS library, please contact **[Jean Laneurit](mailto:jean.laneurit@inrae.fr)** 
+If you have any questions or comments about romea_core_gps library, please contact **[Jean Laneurit](mailto:jean.laneurit@inrae.fr)** 
