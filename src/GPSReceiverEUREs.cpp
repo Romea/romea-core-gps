@@ -58,6 +58,7 @@ GPSReceiverEUREs::GPSReceiverEUREs(
   fixUEREs_[FixQuality::RTK_FIX] = RtkGpsFixEure;
   fixUEREs_[FixQuality::FLOAT_RTK_FIX] = FloatRtkFixEure;
   fixUEREs_[FixQuality::INVALID_FIX] = DEFAULT_UERE_INVALID_FIX;
+  fixUEREs_[FixQuality::MANUAL_FIX] = RtkGpsFixEure;
   fixUEREs_[FixQuality::SIMULATION_FIX] = SimulationFixEure;
 }
 
