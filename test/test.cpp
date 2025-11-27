@@ -38,7 +38,7 @@ TEST(TestGPS, testEUREs)
     EUREs.get(romea::core::FixQuality::INVALID_FIX),
     std::numeric_limits<double>::max());
   EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::SIMULATION_FIX), 0.03);
-  EXPECT_ANY_THROW(EUREs.get(romea::core::FixQuality::MANUAL_FIX));
+  EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::MANUAL_FIX), 0.03);
   EXPECT_ANY_THROW(EUREs.get(romea::core::FixQuality::ESTIMATED_FIX));
 }
 
