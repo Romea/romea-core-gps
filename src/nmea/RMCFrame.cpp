@@ -12,18 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
-#include <iostream>
 #include <cmath>
-#include <vector>
+#include <iostream>
 #include <string>
+#include <vector>
 
 // romea
 #include "romea_core_common/math/EulerAngles.hpp"
-#include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
-
+#include "romea_core_gps/nmea/RMCFrame.hpp"
 
 namespace
 {
@@ -63,10 +61,9 @@ RMCFrame::RMCFrame(const std::string & nmeaRMCSentence)
   talkerId = NMEAParsing::extractTalkerId(fields[0]);
 
   // Decode sentence
-  if ((fields.size() >= 13 || fields.size() <= 15) &&
-    nmeaRMCSentence.substr(3, 3) == "RMC" &&
-    NMEAParsing::computeChecksum(nmeaRMCSentence) == std::stoi(fields.back(), 0, 16))
-  {
+  if (
+    (fields.size() >= 13 || fields.size() <= 15) && nmeaRMCSentence.substr(3, 3) == "RMC" &&
+    NMEAParsing::computeChecksum(nmeaRMCSentence) == std::stoi(fields.back(), 0, 16)) {
     // decode fix date
     if (!fields[1].empty()) {
       fixTime = NMEAParsing::stringToFixTime(fields[1]);
@@ -142,7 +139,6 @@ std::string RMCFrame::toNMEA() const
   }
   ss << ",";
 
-
   // encode latitude
   if (latitude) {
     ss << NMEAParsing::latitudeToString(*latitude);
@@ -150,7 +146,6 @@ std::string RMCFrame::toNMEA() const
     ss << ",";
   }
   ss << ",";
-
 
   // encode longitude
   if (longitude) {
@@ -160,24 +155,23 @@ std::string RMCFrame::toNMEA() const
   }
   ss << ",";
 
-
   // ENcode speed over ground
   if (speedOverGroundInMeterPerSecond) {
-    ss << std::setfill('0') << std::setw(3) <<
-      static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND);
+    ss << std::setfill('0') << std::setw(3)
+       << static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND);
     ss << ".";
-    ss << std::setfill('0') << std::setw(1) <<
-      static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND * 10) % 10;
+    ss << std::setfill('0') << std::setw(1)
+       << static_cast<int>(*speedOverGroundInMeterPerSecond / KNOT_TO_METER_PER_SECOND * 10) % 10;
   }
   ss << ",";
 
   // Encode track angle
   if (trackAngleTrue) {
-    ss << std::setfill('0') << std::setw(3) <<
-      static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180);
+    ss << std::setfill('0') << std::setw(3)
+       << static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180);
     ss << ".";
-    ss << std::setfill('0') << std::setw(1) <<
-      static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
+    ss << std::setfill('0') << std::setw(1)
+       << static_cast<int>(between0And2Pi(*trackAngleTrue) / M_PI * 180 * 10) % 10;
   }
   ss << ",";
 
@@ -206,11 +200,8 @@ std::string RMCFrame::toNMEA() const
   return ss.str();
 }
 
-
 //-----------------------------------------------------------------------------
-double trackAngleToCourseAngle(
-  const double & trackAngle,
-  const double & vehiclelLinearSpeed)
+double trackAngleToCourseAngle(const double & trackAngle, const double & vehiclelLinearSpeed)
 {
   double courseAngle = M_PI_2 - trackAngle;
   return between0And2Pi(vehiclelLinearSpeed < 0 ? courseAngle + M_PI : courseAngle);

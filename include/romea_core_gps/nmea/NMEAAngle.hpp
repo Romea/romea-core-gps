@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__NMEAANGLE_HPP_
 #define ROMEA_CORE_GPS__NMEA__NMEAANGLE_HPP_
 
 // std
-#include <string>
-#include <ostream>
 #include <iomanip>
+#include <ostream>
+#include <string>
 
 namespace romea
 {
@@ -40,15 +39,15 @@ public:
 
   virtual ~NmeaAngle() = default;
 
-  const int & getDegrees()const;
+  const int & getDegrees() const;
 
-  const int & getMinutes()const;
+  const int & getMinutes() const;
 
-  const double & getSeconds()const;
+  const double & getSeconds() const;
 
-  const CardinalDirections & getDirection()const;
+  const CardinalDirections & getDirection() const;
 
-  double toDouble()const;
+  double toDouble() const;
 
 protected:
   int degrees_;

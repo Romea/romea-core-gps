@@ -12,19 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <iostream>
 #include <limits>
-#include <string>
 #include <list>
+#include <string>
 
 // gtest
 #include "gtest/gtest.h"
 
 // romea
 #include "romea_core_gps/GPSReceiver.hpp"
-
 
 TEST(TestGPS, testEUREs)
 {
@@ -35,8 +33,7 @@ TEST(TestGPS, testEUREs)
   EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::FLOAT_RTK_FIX), 0.25);
   EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::RTK_FIX), 0.03);
   EXPECT_DOUBLE_EQ(
-    EUREs.get(romea::core::FixQuality::INVALID_FIX),
-    std::numeric_limits<double>::max());
+    EUREs.get(romea::core::FixQuality::INVALID_FIX), std::numeric_limits<double>::max());
   EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::SIMULATION_FIX), 0.03);
   EXPECT_DOUBLE_EQ(EUREs.get(romea::core::FixQuality::MANUAL_FIX), 0.03);
   EXPECT_ANY_THROW(EUREs.get(romea::core::FixQuality::ESTIMATED_FIX));
@@ -45,8 +42,7 @@ TEST(TestGPS, testEUREs)
 TEST(TestGPS, testLatitude)
 {
   {
-    romea::core::Latitude latitude =
-      romea::core::NMEAParsing::stringToLatitude("4533.53366", "N");
+    romea::core::Latitude latitude = romea::core::NMEAParsing::stringToLatitude("4533.53366", "N");
     EXPECT_NEAR(latitude.toDouble(), 0.795153, 0.01);
     EXPECT_FALSE(romea::core::NMEAParsing::latitudeToString(latitude).compare("4533.53366,N"));
 
@@ -57,8 +53,7 @@ TEST(TestGPS, testLatitude)
   }
 
   {
-    romea::core::Latitude latitude =
-      romea::core::NMEAParsing::stringToLatitude("4533.53366", "S");
+    romea::core::Latitude latitude = romea::core::NMEAParsing::stringToLatitude("4533.53366", "S");
     EXPECT_NEAR(latitude.toDouble(), -0.795153, 0.01);
     EXPECT_FALSE(romea::core::NMEAParsing::latitudeToString(latitude).compare("4533.53366,S"));
 
@@ -295,13 +290,13 @@ TEST(TestGPS, testDecodeGSVSentence)
   }
 }
 
-
 TEST(TestGPS, testSattellitesInView)
 {
   {
     romea::core::GPSReceiver gps;
 
-    gps.updateSatellitesViews("$GPGSV,4,1,14,03,31,286,48,06,54,291,53,07,03,335,35,16,70,294,49*76");  //NOLINT
+    gps.updateSatellitesViews(
+      "$GPGSV,4,1,14,03,31,286,48,06,54,291,53,07,03,335,35,16,70,294,49*76");  //NOLINT
     gps.updateSatellitesViews("$GPGSV,4,2,14,18,35,121,33,19,11,273,40,21,63,064,47,22,19,157,*71");
     gps.updateSatellitesViews("$GPGSV,4,3,14,27,43,285,47,29,10,086,36,30,30,089,45,31,06,195,*7D");
     gps.updateSatellitesViews("$GPGSV,4,4,14,33,34,205,,39,33,150,*72");
@@ -337,11 +332,9 @@ TEST(TestGPS, testSattellitesInView)
 
     EXPECT_EQ(GPSIds.size(), 2);
     EXPECT_EQ(
-      std::binary_search(
-        std::cbegin(GPSIds), std::cend(GPSIds), romea::core::TalkerId::GP), 1);
+      std::binary_search(std::cbegin(GPSIds), std::cend(GPSIds), romea::core::TalkerId::GP), 1);
     EXPECT_EQ(
-      std::binary_search(
-        std::cbegin(GPSIds), std::cend(GPSIds), romea::core::TalkerId::GL), 1);
+      std::binary_search(std::cbegin(GPSIds), std::cend(GPSIds), romea::core::TalkerId::GL), 1);
     EXPECT_EQ(satellites.getSatellitesInfo(romea::core::TalkerId::GP).size(), 16);
     EXPECT_EQ(satellites.getSatellitesInfo(romea::core::TalkerId::GL).size(), 10);
   }
@@ -351,14 +344,10 @@ TEST(TestGPS, testFixQualityToDescription)
 {
   EXPECT_STREQ(
     romea::core::description(romea::core::FixQuality::INVALID_FIX).c_str(), "invalid fix (0)");
-  EXPECT_STREQ(
-    romea::core::description(romea::core::FixQuality::GPS_FIX).c_str(), "gps fix (1)");
-  EXPECT_STREQ(
-    romea::core::description(romea::core::FixQuality::DGPS_FIX).c_str(), "dgps fix (2)");
-  EXPECT_STREQ(
-    romea::core::description(romea::core::FixQuality::PPS_FIX).c_str(), "pps fix (3)");
-  EXPECT_STREQ(
-    romea::core::description(romea::core::FixQuality::RTK_FIX).c_str(), "rtk fix (4)");
+  EXPECT_STREQ(romea::core::description(romea::core::FixQuality::GPS_FIX).c_str(), "gps fix (1)");
+  EXPECT_STREQ(romea::core::description(romea::core::FixQuality::DGPS_FIX).c_str(), "dgps fix (2)");
+  EXPECT_STREQ(romea::core::description(romea::core::FixQuality::PPS_FIX).c_str(), "pps fix (3)");
+  EXPECT_STREQ(romea::core::description(romea::core::FixQuality::RTK_FIX).c_str(), "rtk fix (4)");
   EXPECT_STREQ(
     romea::core::description(romea::core::FixQuality::FLOAT_RTK_FIX).c_str(), "float rtk fix (5)");
   EXPECT_STREQ(

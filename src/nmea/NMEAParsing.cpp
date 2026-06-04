@@ -12,17 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <algorithm>
 #include <chrono>
-#include <regex>
-#include <sstream>
+#include <cmath>
 #include <iomanip>
 #include <iostream>
-#include <cmath>
-#include <vector>
+#include <regex>
+#include <sstream>
 #include <string>
+#include <vector>
 
 // romea
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
@@ -50,8 +49,8 @@ namespace core
 //-----------------------------------------------------------------------------
 void NMEAParsing::removeCRLF(std::string & sentence)
 {
-  sentence.erase(std::remove(std::begin(sentence), std::end(sentence), '\r'), std::end(sentence) );
-  sentence.erase(std::remove(std::begin(sentence), std::end(sentence), '\n'), std::end(sentence) );
+  sentence.erase(std::remove(std::begin(sentence), std::end(sentence), '\r'), std::end(sentence));
+  sentence.erase(std::remove(std::begin(sentence), std::end(sentence), '\n'), std::end(sentence));
 }
 
 //-----------------------------------------------------------------------------
@@ -61,7 +60,6 @@ bool NMEAParsing::isNMEASentence(const std::string & sentence)
          sentence.substr(0, 2).compare(PREFIX) == 0 &&
          sentence[sentence.length() - CHECKSUM_LENGTH_INCLUDING_WILDCARD] == '*';
 }
-
 
 //-----------------------------------------------------------------------------
 TalkerId NMEAParsing::extractTalkerId(const std::string & sentence)
@@ -149,8 +147,9 @@ NMEAParsing::SentenceID NMEAParsing::extractSentenceId(const std::string & sente
   std::string sentenceID = sentence.substr(3, 3);
 
   auto it = std::find_if(
-    std::cbegin(SENTENCE_IDS), std::cend(SENTENCE_IDS),
-    [&sentenceID](const std::string & id) {return sentenceID.compare(id) == 0;});
+    std::cbegin(SENTENCE_IDS), std::cend(SENTENCE_IDS), [&sentenceID](const std::string & id) {
+      return sentenceID.compare(id) == 0;
+    });
 
   if (it == std::cend(SENTENCE_IDS)) {
     return SentenceID::UNSUPPORTED;
@@ -186,7 +185,7 @@ std::vector<std::string> NMEAParsing::splitInFields(const std::string & sentence
 {
   std::regex regex{R"([\,\*])"};
   std::sregex_token_iterator it{std::cbegin(sentence), std::cend(sentence), regex, -1};
-  return std::vector<std::string> {it, {}};
+  return std::vector<std::string>{it, {}};
 }
 
 //-----------------------------------------------------------------------------
@@ -207,9 +206,7 @@ int NMEAParsing::computeChecksum(
 int NMEAParsing::computeChecksum(const std::string & sentence)
 {
   return computeChecksum(
-    sentence,
-    CHECKSUM_BEGIN_POSITION,
-    sentence.size() - CHECKSUM_LENGTH_INCLUDING_WILDCARD);
+    sentence, CHECKSUM_BEGIN_POSITION, sentence.size() - CHECKSUM_LENGTH_INCLUDING_WILDCARD);
 }
 
 //-----------------------------------------------------------------------------
@@ -263,8 +260,7 @@ std::string NMEAParsing::fixDateToString(const FixDate & fixDate)
 
 //-----------------------------------------------------------------------------
 Latitude NMEAParsing::stringToLatitude(
-  const std::string & stringAngle,
-  const std::string & stringCardinalDirection)
+  const std::string & stringAngle, const std::string & stringCardinalDirection)
 {
   size_t n = stringAngle.find(".");
   int degrees = std::stoi(stringAngle.substr(0, n - 2));
@@ -276,8 +272,7 @@ Latitude NMEAParsing::stringToLatitude(
 
 //-----------------------------------------------------------------------------
 Longitude NMEAParsing::stringToLongitude(
-  const std::string & stringAngle,
-  const std::string & stringCardinalDirection)
+  const std::string & stringAngle, const std::string & stringCardinalDirection)
 {
   size_t n = stringAngle.find(".");
   int degrees = std::stoi(stringAngle.substr(0, n - 2));
@@ -312,7 +307,6 @@ std::string NMEAParsing::longitudeToString(const Longitude & longitude)
   ss << toString(longitude.getDirection());
   return ss.str();
 }
-
 
 //-----------------------------------------------------------------------------
 FixTime NMEAParsing::timePointToFixTime(const TimePoint & timepoint)

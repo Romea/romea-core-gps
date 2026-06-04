@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
-#include <optional>
-#include <vector>
-#include <string>
 #include <iostream>
+#include <optional>
+#include <string>
+#include <vector>
 
 // romea
 #include "romea_core_gps/nmea/GGAFrame.hpp"
@@ -59,10 +58,9 @@ GGAFrame::GGAFrame(const std::string & nmeaGGASentence)
 
   // Decode sentence
   // TODO(jean) c++ 20  nmeaGGASentence.start_with("GGA")
-  if (fields.size() == 16 &&
-    nmeaGGASentence.substr(3, 3) == "GGA" &&
-    NMEAParsing::computeChecksum(nmeaGGASentence) == std::stoi(fields.back(), 0, 16))
-  {
+  if (
+    fields.size() == 16 && nmeaGGASentence.substr(3, 3) == "GGA" &&
+    NMEAParsing::computeChecksum(nmeaGGASentence) == std::stoi(fields.back(), 0, 16)) {
     // decode fix date
     if (!fields[1].empty()) {
       fixTime = NMEAParsing::stringToFixTime(fields[1]);
@@ -129,7 +127,6 @@ std::string GGAFrame::toNMEA() const
   }
   ss << ",";
 
-
   // encode latitude
   if (latitude) {
     ss << NMEAParsing::latitudeToString(*latitude);
@@ -137,7 +134,6 @@ std::string GGAFrame::toNMEA() const
     ss << ",";
   }
   ss << ",";
-
 
   // encode longitude
   if (longitude) {
@@ -210,13 +206,13 @@ std::ostream & operator<<(std::ostream & os, const GGAFrame & frame)
 
   os << "latitude  : ";
   if (frame.latitude) {
-    os << *frame.latitude;   // *180/PI;
+    os << *frame.latitude;  // *180/PI;
   }
   os << std::endl;
 
   os << "longitude  : ";
   if (frame.longitude) {
-    os << *frame.longitude;   // *180/PI;
+    os << *frame.longitude;  // *180/PI;
   }
   os << std::endl;
 

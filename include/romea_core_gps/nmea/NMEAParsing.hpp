@@ -12,21 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_
 #define ROMEA_CORE_GPS__NMEA__NMEAPARSING_HPP_
 
 // std
-#include <vector>
 #include <string>
+#include <vector>
 
 // romea
 #include "romea_core_common/time/Time.hpp"
-#include "romea_core_gps/nmea/NMEAFixTime.hpp"
 #include "romea_core_gps/nmea/NMEAFixDate.hpp"
-#include "romea_core_gps/nmea/NMEATalker.hpp"
+#include "romea_core_gps/nmea/NMEAFixTime.hpp"
 #include "romea_core_gps/nmea/NMEALatitude.hpp"
 #include "romea_core_gps/nmea/NMEALongitude.hpp"
+#include "romea_core_gps/nmea/NMEATalker.hpp"
 
 namespace romea
 {
@@ -76,14 +75,12 @@ public:
   static std::string fixDateToString(const FixDate & fixDate);
 
   static Latitude stringToLatitude(
-    const std::string & stringAngle,
-    const std::string & stringCardinalDirection);
+    const std::string & stringAngle, const std::string & stringCardinalDirection);
 
   static std::string latitudeToString(const Latitude & latitude);
 
   static Longitude stringToLongitude(
-    const std::string & stringAngle,
-    const std::string & stringCardinalDirection);
+    const std::string & stringAngle, const std::string & stringCardinalDirection);
 
   static std::string longitudeToString(const Longitude & longitude);
 

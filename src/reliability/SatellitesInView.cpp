@@ -12,16 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
-#include <typeinfo>
 #include <cassert>
 #include <deque>
 #include <list>
+#include <typeinfo>
 
 // romea
 #include "romea_core_gps/reliability/SatellitesInView.hpp"
-
 
 namespace romea
 {
@@ -29,15 +27,13 @@ namespace core
 {
 
 //--------------------------------------------------------------------------
-SatellitesInView::SatellitesInView()
-: satellitesInfo_()
+SatellitesInView::SatellitesInView() : satellitesInfo_()
 {
 }
 
 //--------------------------------------------------------------------------
 void SatellitesInView::setSatellitesInfo(
-  const TalkerId & gnssId,
-  const std::deque<GSVFrame::SatelliteInfo> & satellitesInfo)
+  const TalkerId & gnssId, const std::deque<GSVFrame::SatelliteInfo> & satellitesInfo)
 {
   satellitesInfo_[gnssId] = satellitesInfo;
 }
@@ -55,7 +51,7 @@ std::list<TalkerId> SatellitesInView::getTalkerIds() const
 
 //--------------------------------------------------------------------------
 const std::deque<GSVFrame::SatelliteInfo> & SatellitesInView::getSatellitesInfo(
-  const TalkerId & globalPositioningID)const
+  const TalkerId & globalPositioningID) const
 {
   // TODO(jean) c++20 replace by satellitesInfo_.contains
   auto I = satellitesInfo_.find(globalPositioningID);

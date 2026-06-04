@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <string>
@@ -69,25 +68,19 @@ bool operator>=(FixQuality fixQuality1, FixQuality fixQuality2)
       return fixQuality1 == FixQuality::RTK_FIX;
       break;
     case FixQuality::FLOAT_RTK_FIX:
-      return fixQuality1 == FixQuality::RTK_FIX ||
-             fixQuality1 == FixQuality::FLOAT_RTK_FIX;
+      return fixQuality1 == FixQuality::RTK_FIX || fixQuality1 == FixQuality::FLOAT_RTK_FIX;
       break;
     case FixQuality::DGPS_FIX:
-      return fixQuality1 == FixQuality::RTK_FIX ||
-             fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
+      return fixQuality1 == FixQuality::RTK_FIX || fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
              fixQuality1 == FixQuality::DGPS_FIX;
       break;
     case FixQuality::GPS_FIX:
-      return fixQuality1 == FixQuality::RTK_FIX ||
-             fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
-             fixQuality1 == FixQuality::DGPS_FIX ||
-             fixQuality1 == FixQuality::GPS_FIX;
+      return fixQuality1 == FixQuality::RTK_FIX || fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
+             fixQuality1 == FixQuality::DGPS_FIX || fixQuality1 == FixQuality::GPS_FIX;
       break;
     case FixQuality::PPS_FIX:
-      return fixQuality1 == FixQuality::RTK_FIX ||
-             fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
-             fixQuality1 == FixQuality::DGPS_FIX ||
-             fixQuality1 == FixQuality::GPS_FIX ||
+      return fixQuality1 == FixQuality::RTK_FIX || fixQuality1 == FixQuality::FLOAT_RTK_FIX ||
+             fixQuality1 == FixQuality::DGPS_FIX || fixQuality1 == FixQuality::GPS_FIX ||
              fixQuality1 == FixQuality::PPS_FIX;
     default:
       return false;

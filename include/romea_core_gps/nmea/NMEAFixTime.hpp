@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_
 #define ROMEA_CORE_GPS__NMEA__NMEAFIXTIME_HPP_
 
@@ -27,22 +26,17 @@ namespace core
 class FixTime
 {
 public:
-  FixTime(
-    int hours,
-    int minutes,
-    double seconds);
+  FixTime(int hours, int minutes, double seconds);
 
-  FixTime(
-    int seconds,
-    int nanoseconds);
+  FixTime(int seconds, int nanoseconds);
 
-  int getHours()const;
+  int getHours() const;
 
-  int getMinutes()const;
+  int getMinutes() const;
 
-  double getSeconds()const;
+  double getSeconds() const;
 
-  std::string toString()const;
+  std::string toString() const;
 
 private:
   int hours_;

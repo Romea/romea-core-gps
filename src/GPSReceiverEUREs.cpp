@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
+#include <exception>
 #include <limits>
 #include <sstream>
-#include <exception>
 
 // romea
 #include "romea_core_gps/GPSReceiverEUREs.hpp"
@@ -38,10 +37,13 @@ namespace romea
 namespace core
 {
 
-
 GPSReceiverEUREs::GPSReceiverEUREs()
-: GPSReceiverEUREs(DEFAULT_UERE_GPS_FIX, DEFAULT_UERE_DGPS_FIX, DEFAULT_UERE_FLOAT_RTK_FIX,
-    DEFAULT_UERE_RTK_FIX, DEFAULT_UERE_SIMULATION_FIX)
+: GPSReceiverEUREs(
+    DEFAULT_UERE_GPS_FIX,
+    DEFAULT_UERE_DGPS_FIX,
+    DEFAULT_UERE_FLOAT_RTK_FIX,
+    DEFAULT_UERE_RTK_FIX,
+    DEFAULT_UERE_SIMULATION_FIX)
 {
 }
 
@@ -67,7 +69,7 @@ const double & GPSReceiverEUREs::get(const FixQuality & fixQuality) const
   // TODO(jean) c++20 replace by fixUEREs_.contains
   auto it = fixUEREs_.find(fixQuality);
 
-  if (it == fixUEREs_.end() ) {
+  if (it == fixUEREs_.end()) {
     std::ostringstream msg;
     msg << " Fix quality : ";
     msg << fixQuality;

@@ -12,15 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
-#include <iomanip>
 #include <cassert>
+#include <iomanip>
 #include <string>
 
 // romea
 #include "romea_core_gps/nmea/NMEALongitude.hpp"
-
 
 namespace romea
 {

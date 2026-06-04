@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__NMEAFIXDATE_HPP_
 #define ROMEA_CORE_GPS__NMEA__NMEAFIXDATE_HPP_
 
@@ -27,16 +26,13 @@ namespace core
 class FixDate
 {
 public:
-  FixDate(
-    int years,
-    int months,
-    int days);
+  FixDate(int years, int months, int days);
 
-  int getYears()const;
+  int getYears() const;
 
-  int getMonths()const;
+  int getMonths() const;
 
-  double getDays()const;
+  double getDays() const;
 
 private:
   int years_;

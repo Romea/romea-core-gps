@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cmath>
 
@@ -25,11 +24,8 @@ namespace core
 {
 
 //--------------------------------------------------------------------------
-HalfNormalDistribution::HalfNormalDistribution(
-  const double & snrMean,
-  const double & snrVariance)
-: mean_(snrMean),
-  var2_(2 * snrVariance)
+HalfNormalDistribution::HalfNormalDistribution(const double & snrMean, const double & snrVariance)
+: mean_(snrMean), var2_(2 * snrVariance)
 {
 }
 

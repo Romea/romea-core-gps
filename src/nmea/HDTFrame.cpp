@@ -23,7 +23,6 @@
 #include "romea_core_gps/nmea/HDTFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
 
-
 namespace romea
 {
 namespace core
@@ -89,11 +88,15 @@ std::ostream & operator<<(std::ostream & os, const HDTFrame & frame)
     os << "  GPS system: " << description(frame.talkerId) << std::endl;
 
     os << "  heading: ";
-    if (frame.heading) {os << *frame.heading / M_PI * 180.;}
+    if (frame.heading) {
+      os << *frame.heading / M_PI * 180.;
+    }
     os << std::endl;
 
     os << "  true north: ";
-    if (frame.trueNorth) {os << *frame.trueNorth;}
+    if (frame.trueNorth) {
+      os << *frame.trueNorth;
+    }
     os << std::endl;
 
     return os;

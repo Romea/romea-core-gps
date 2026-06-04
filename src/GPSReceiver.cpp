@@ -12,26 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <string>
 
 // romea
 #include "romea_core_gps/GPSReceiver.hpp"
 
-
 namespace romea
 {
 namespace core
 {
 
-
 //--------------------------------------------------------------------------
-GPSReceiver::GPSReceiver()
-: fixUEREs_(),
-  mutex_(),
-  gsvFrameAggregator_(),
-  satellitesInView_()
+GPSReceiver::GPSReceiver() : fixUEREs_(), mutex_(), gsvFrameAggregator_(), satellitesInView_()
 {
 }
 
@@ -71,14 +64,14 @@ const Eigen::Vector3d & GPSReceiver::getAntennaBodyPosition() const
 }
 
 //--------------------------------------------------------------------------
-SatellitesInView GPSReceiver::getSatellitesInView()const
+SatellitesInView GPSReceiver::getSatellitesInView() const
 {
   std::lock_guard<std::mutex> lock(mutex_);
   return satellitesInView_;
 }
 
 //--------------------------------------------------------------------------
-double GPSReceiver::getReliability()const
+double GPSReceiver::getReliability() const
 {
   return reliability_;
 }

@@ -16,8 +16,8 @@
 // limitations under the License.
 
 // std
-#include <optional>
 #include <memory>
+#include <optional>
 #include <ostream>
 #include <string>
 

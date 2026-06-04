@@ -12,17 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
 #define ROMEA_CORE_GPS__RELIABILITY__SNRDISTRIBUTION_HPP_
 
 // std
-#include <vector>
 #include <cstdint>
+#include <vector>
 
 // romea
 #include "HalfNormalDistribution.hpp"
-
 
 namespace romea
 {

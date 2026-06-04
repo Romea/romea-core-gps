@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <deque>
@@ -26,20 +25,15 @@ namespace core
 {
 
 //-----------------------------------------------------------------------------
-GSVFrameAggregator::GSVFrameAggregator()
-: satellitesInfo_()
+GSVFrameAggregator::GSVFrameAggregator() : satellitesInfo_()
 {
 }
 
 //-----------------------------------------------------------------------------
 bool GSVFrameAggregator::update(const GSVFrame & gsvFrame)
 {
-  if (gsvFrame.numberOfSentences &&
-    gsvFrame.sentenceNumber &&
-    gsvFrame.numberOfSatellitesInView)
-  {
-    std::deque<GSVFrame::SatelliteInfo> & satellitesData =
-      satellitesInfo_[gsvFrame.talkerID];
+  if (gsvFrame.numberOfSentences && gsvFrame.sentenceNumber && gsvFrame.numberOfSatellitesInView) {
+    std::deque<GSVFrame::SatelliteInfo> & satellitesData = satellitesInfo_[gsvFrame.talkerID];
 
     // Clear the view when the frame is received
     if (*gsvFrame.sentenceNumber == 1) {
@@ -48,9 +42,7 @@ bool GSVFrameAggregator::update(const GSVFrame & gsvFrame)
 
     // Concate NMEA sentences
     satellitesData.insert(
-      satellitesData.end(),
-      gsvFrame.satellitesInfo.cbegin(),
-      gsvFrame.satellitesInfo.cend());
+      satellitesData.end(), gsvFrame.satellitesInfo.cbegin(), gsvFrame.satellitesInfo.cend());
 
     // Data is complete ?
     return *gsvFrame.sentenceNumber == *gsvFrame.numberOfSentences &&
@@ -60,8 +52,8 @@ bool GSVFrameAggregator::update(const GSVFrame & gsvFrame)
 }
 
 //-----------------------------------------------------------------------------
-const std::deque<GSVFrame::SatelliteInfo> &
-GSVFrameAggregator::getSatellitesInfo(const TalkerId & systemID)const
+const std::deque<GSVFrame::SatelliteInfo> & GSVFrameAggregator::getSatellitesInfo(
+  const TalkerId & systemID) const
 {
   // TODO(jean) c++20 replace by satellitesInfo_.contains
   auto I = satellitesInfo_.find(systemID);

@@ -16,19 +16,18 @@
 #define ROMEA_CORE_GPS__NMEA__RMCFRAME_HPP_
 
 // std
-#include <optional>
-#include <string>
 #include <memory>
+#include <optional>
 #include <ostream>
+#include <string>
 
 // romea
-#include "romea_core_gps/nmea/NMEALatitude.hpp"
-#include "romea_core_gps/nmea/NMEALongitude.hpp"
+#include "romea_core_gps/nmea/NMEAFixDate.hpp"
 #include "romea_core_gps/nmea/NMEAFixQuality.hpp"
 #include "romea_core_gps/nmea/NMEAFixTime.hpp"
-#include "romea_core_gps/nmea/NMEAFixDate.hpp"
+#include "romea_core_gps/nmea/NMEALatitude.hpp"
+#include "romea_core_gps/nmea/NMEALongitude.hpp"
 #include "romea_core_gps/nmea/NMEATalker.hpp"
-
 
 namespace romea
 {
@@ -65,11 +64,7 @@ struct RMCFrame
 
 std::ostream & operator<<(std::ostream & os, const RMCFrame & frame);
 
-
-double trackAngleToCourseAngle(
-  const double & trackAngle,
-  const double & vehiclelLinearSpeed);
-
+double trackAngleToCourseAngle(const double & trackAngle, const double & vehiclelLinearSpeed);
 
 }  // namespace core
 }  // namespace romea

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <iomanip>
@@ -27,31 +26,25 @@ namespace core
 {
 
 //-----------------------------------------------------------------------------
-FixDate::FixDate(
-  int years,
-  int months,
-  int days)
-: years_(years),
-  months_(months),
-  days_(days)
+FixDate::FixDate(int years, int months, int days) : years_(years), months_(months), days_(days)
 {
   assert(years_ < 100);
 }
 
 //-----------------------------------------------------------------------------
-int FixDate::getYears()const
+int FixDate::getYears() const
 {
   return years_;
 }
 
 //-----------------------------------------------------------------------------
-int FixDate::getMonths()const
+int FixDate::getMonths() const
 {
   return months_;
 }
 
 //-----------------------------------------------------------------------------
-double FixDate::getDays()const
+double FixDate::getDays() const
 {
   return days_;
 }

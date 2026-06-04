@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <cmath>
@@ -20,7 +19,6 @@
 
 // romea
 #include "romea_core_gps/reliability/GPSReliability.hpp"
-
 
 namespace
 {
@@ -33,19 +31,16 @@ namespace core
 {
 
 //--------------------------------------------------------------------------
-GPSReliability::GPSReliability()
-: snrDistributions_()
+GPSReliability::GPSReliability() : snrDistributions_()
 {
 }
 
 //--------------------------------------------------------------------------
 void GPSReliability::setSNRDistribution(
-  const TalkerId & talkerId,
-  const SNRDistribution & snrDistribution)
+  const TalkerId & talkerId, const SNRDistribution & snrDistribution)
 {
   snrDistributions_[talkerId] = snrDistribution;
 }
-
 
 //--------------------------------------------------------------------------
 double GPSReliability::computeReliabilty(const SatellitesInView & satellitesInView)

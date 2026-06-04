@@ -12,19 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_
 #define ROMEA_CORE_GPS__RELIABILITY__SATELLITESINVIEW_HPP_
 
 // std
 #include <deque>
-#include <string>
 #include <list>
 #include <map>
+#include <string>
 
 // romea
 #include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
-
 
 namespace romea
 {
@@ -40,10 +38,9 @@ public:
   SatellitesInView();
 
   void setSatellitesInfo(
-    const TalkerId & gnssId,
-    const std::deque<GSVFrame::SatelliteInfo> & satellitesInfo);
+    const TalkerId & gnssId, const std::deque<GSVFrame::SatelliteInfo> & satellitesInfo);
 
-  const SatellitesInfo & getSatellitesInfo(const TalkerId & talkerId)const;
+  const SatellitesInfo & getSatellitesInfo(const TalkerId & talkerId) const;
 
   std::list<TalkerId> getTalkerIds() const;
 

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
 #define ROMEA_CORE_GPS__NMEA__GSVFRAMEAGGREGATOR_HPP_
 
@@ -22,7 +21,6 @@
 
 // romea
 #include "romea_core_gps/nmea/GSVFrame.hpp"
-
 
 namespace romea
 {
@@ -39,7 +37,7 @@ public:
 
   bool update(const GSVFrame & gsvFrame);
 
-  const SatellitesInfo & getSatellitesInfo(const TalkerId & systemID)const;
+  const SatellitesInfo & getSatellitesInfo(const TalkerId & systemID) const;
 
 private:
   std::map<TalkerId, SatellitesInfo> satellitesInfo_;

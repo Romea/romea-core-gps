@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__GPSRECEIVER_HPP_
 #define ROMEA_CORE_GPS__GPSRECEIVER_HPP_
 
@@ -20,20 +19,19 @@
 #include <Eigen/Eigen>
 
 // stl
-#include <mutex>
 #include <map>
+#include <mutex>
 #include <string>
 
 // romea
 #include "romea_core_gps/GPSReceiverEUREs.hpp"
 #include "romea_core_gps/nmea/GGAFrame.hpp"
-#include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/nmea/GSVFrame.hpp"
+#include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
 #include "romea_core_gps/nmea/HDTFrame.hpp"
 #include "romea_core_gps/nmea/NMEAParsing.hpp"
-#include "romea_core_gps/nmea/GSVFrameAggregator.hpp"
+#include "romea_core_gps/nmea/RMCFrame.hpp"
 #include "romea_core_gps/reliability/GPSReliability.hpp"
-
 
 namespace romea
 {
@@ -68,9 +66,9 @@ public:
 
   bool updateSatellitesViews(const std::string & nmeaGSVFrame);
 
-  SatellitesInView getSatellitesInView()const;
+  SatellitesInView getSatellitesInView() const;
 
-  double getReliability()const;
+  double getReliability() const;
 
 protected:
   GPSReceiverEUREs fixUEREs_;

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <vector>
@@ -20,15 +19,13 @@
 // romea
 #include "romea_core_gps/reliability/SNRDistribution.hpp"
 
-
 namespace romea
 {
 namespace core
 {
 
 //--------------------------------------------------------------------------
-SNRDistribution::SNRDistribution()
-: snrDistribution_()
+SNRDistribution::SNRDistribution() : snrDistribution_()
 {
 }
 
@@ -40,9 +37,7 @@ SNRDistribution::SNRDistribution(const std::vector<HalfNormalDistribution> & snr
 }
 
 //--------------------------------------------------------------------------
-double SNRDistribution::computeSNRConfidence(
-  const uint16_t & elevation,
-  const uint16_t & snr) const
+double SNRDistribution::computeSNRConfidence(const uint16_t & elevation, const uint16_t & snr) const
 {
   assert(snrDistribution_.size() == 91);
   return elevation == 0 ? 0 : snrDistribution_[elevation](snr);

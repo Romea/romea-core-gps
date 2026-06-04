@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_
 #define ROMEA_CORE_GPS__NMEA__NMEALATITUDE_HPP_
 
@@ -21,7 +20,6 @@
 
 // romea
 #include "romea_core_gps/nmea/NMEAAngle.hpp"
-
 
 namespace romea
 {

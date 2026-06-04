@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
+#include <deque>
 #include <string>
 #include <vector>
-#include <deque>
 
 // romea
 #include "romea_core_gps/nmea/GSVFrame.hpp"
@@ -27,13 +26,8 @@ namespace romea
 namespace core
 {
 
-
 //-----------------------------------------------------------------------------
-GSVFrame::SatelliteInfo::SatelliteInfo()
-: PRNNumber(),
-  elevation(),
-  azimut(),
-  SNR()
+GSVFrame::SatelliteInfo::SatelliteInfo() : PRNNumber(), elevation(), azimut(), SNR()
 {
 }
 
@@ -61,9 +55,9 @@ GSVFrame::GSVFrame(const std::string & nmeaGSVSentence)
   talkerID = NMEAParsing::extractTalkerId(fields[0]);
 
   // Decode sentence
-  if (nmeaGSVSentence.substr(3, 3) == "GSV" &&
-    NMEAParsing::computeChecksum(nmeaGSVSentence) == std::stoi(fields.back(), 0, 16))
-  {
+  if (
+    nmeaGSVSentence.substr(3, 3) == "GSV" &&
+    NMEAParsing::computeChecksum(nmeaGSVSentence) == std::stoi(fields.back(), 0, 16)) {
     // decode number of sentences
     if (!fields[1].empty()) {
       numberOfSentences = std::stoi(fields[1]);

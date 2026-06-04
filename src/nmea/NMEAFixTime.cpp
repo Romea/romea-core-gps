@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // std
 #include <cassert>
 #include <iomanip>
@@ -27,13 +26,8 @@ namespace core
 {
 
 //-----------------------------------------------------------------------------
-FixTime::FixTime(
-  int hours,
-  int minutes,
-  double seconds)
-: hours_(hours),
-  minutes_(minutes),
-  seconds_(seconds)
+FixTime::FixTime(int hours, int minutes, double seconds)
+: hours_(hours), minutes_(minutes), seconds_(seconds)
 {
   assert(hours < 24);
   assert(minutes < 60);
@@ -41,12 +35,7 @@ FixTime::FixTime(
 }
 
 //-----------------------------------------------------------------------------
-FixTime::FixTime(
-  int seconds,
-  int nanoseconds)
-: hours_(0),
-  minutes_(0),
-  seconds_(0)
+FixTime::FixTime(int seconds, int nanoseconds) : hours_(0), minutes_(0), seconds_(0)
 {
   seconds = seconds % (24 * 60 * 60);
   hours_ = seconds / 3600;
@@ -60,21 +49,20 @@ FixTime::FixTime(
   assert(seconds_ < 60);
 }
 
-
 //-----------------------------------------------------------------------------
-int FixTime::getHours()const
+int FixTime::getHours() const
 {
   return hours_;
 }
 
 //-----------------------------------------------------------------------------
-int FixTime::getMinutes()const
+int FixTime::getMinutes() const
 {
   return minutes_;
 }
 
 //-----------------------------------------------------------------------------
-double FixTime::getSeconds()const
+double FixTime::getSeconds() const
 {
   return seconds_;
 }

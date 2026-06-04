@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #include "romea_core_gps/nmea/NMEAAngle.hpp"
-#include "romea_core_gps/nmea/NMEAParsing.hpp"
+
+#include "romea_core_common/math/Algorithm.hpp"
 #include "romea_core_gps/nmea/NMEALatitude.hpp"
 #include "romea_core_gps/nmea/NMEALongitude.hpp"
-#include "romea_core_common/math/Algorithm.hpp"
+#include "romea_core_gps/nmea/NMEAParsing.hpp"
 
 namespace romea
 {
@@ -31,10 +31,7 @@ NmeaAngle<CardinalDirections>::NmeaAngle(
   const int & minutes,
   const double & seconds,
   const CardinalDirections & direction)
-: degrees_(degrees),
-  minutes_(minutes),
-  seconds_(seconds),
-  direction_(direction)
+: degrees_(degrees), minutes_(minutes), seconds_(seconds), direction_(direction)
 {
 }
 
@@ -53,38 +50,37 @@ NmeaAngle<CardinalDirections>::NmeaAngle(const double & angle)
   seconds_ = ((angleInDegre - degrees_) * 60 - minutes_) * 60;
 }
 
-
 //-----------------------------------------------------------------------------
 template<class CardinalDirections>
-const int & NmeaAngle<CardinalDirections>::getDegrees()const
+const int & NmeaAngle<CardinalDirections>::getDegrees() const
 {
   return degrees_;
 }
 
 //-----------------------------------------------------------------------------
 template<class CardinalDirections>
-const int & NmeaAngle<CardinalDirections>::getMinutes()const
+const int & NmeaAngle<CardinalDirections>::getMinutes() const
 {
   return minutes_;
 }
 
 //-----------------------------------------------------------------------------
 template<class CardinalDirections>
-const double & NmeaAngle<CardinalDirections>::getSeconds()const
+const double & NmeaAngle<CardinalDirections>::getSeconds() const
 {
   return seconds_;
 }
 
 //-----------------------------------------------------------------------------
 template<class CardinalDirections>
-const CardinalDirections & NmeaAngle<CardinalDirections>::getDirection()const
+const CardinalDirections & NmeaAngle<CardinalDirections>::getDirection() const
 {
   return direction_;
 }
 
 //-----------------------------------------------------------------------------
 template<class CardinalDirections>
-double NmeaAngle<CardinalDirections>::toDouble()const
+double NmeaAngle<CardinalDirections>::toDouble() const
 {
   return static_cast<int>(direction_) * (degrees_ + minutes_ / 60. + seconds_ / 3600.) / 180. *
          M_PI;
