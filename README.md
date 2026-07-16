@@ -41,18 +41,20 @@ The facade keeps these values close to the parsed NMEA frames and exposes the he
 | `RMC` | `RMCFrame` | Fix time, status, latitude, longitude, speed over ground, track angle, date, magnetic deviation and fix quality. |
 | `GSV` | `GSVFrame` | Satellites in view, including PRN number, elevation, azimuth and SNR. |
 | `HDT` | `HDTFrame` | Heading relative to true north. |
+| Aggregated satellites | `SatellitesInView` | Current visible satellites grouped by GNSS talker after aggregating `GSV` messages. |
 
-mettre SatellitesInView dans le tableau
-
-Each frame can be built from a raw NMEA sentence. Some frames, such as `GGAFrame`, `RMCFrame` and `HDTFrame`, can also be converted back to a NMEA sentence with `toNMEA()`. `GSVFrameAggregator`  (voir section suivnante) collects multi-sentence `GSV` messages, and `SatellitesInView` stores the visible satellites grouped by GNSS talker.
+Each frame can be built from a raw NMEA sentence. Some frames, such as `GGAFrame`, `RMCFrame` and `HDTFrame`, can also be converted back to a NMEA sentence with `toNMEA()`. `GSVFrameAggregator` collects multi-sentence `GSV` messages, and `SatellitesInView` stores the visible satellites grouped by GNSS talker.
 
 ---
 
 ## Algorithms
 
-les algorithmes fournies par les classses GSVFrameAggregator et GPSReliability il servent a ageger les messages gsvs pour obtenir l'etats de la costellation des satellites visibles puis calculer la reliability de la position estimé 
+The package provides two reusable algorithmic blocks:
 
-rendred homogène cette section avec les autres capteurs
+| Component | Role |
+| --------- | ---- |
+| `GSVFrameAggregator` | Aggregates multi-sentence `GSV` messages to recover the current visible satellite constellation. |
+| `GPSReliability` | Computes a reliability score from the visible satellite constellation and SNR distributions. |
 
 The reliability estimator uses information from `GSV` sentences. For each visible satellite, it takes into account:
 
@@ -66,9 +68,9 @@ This reliability score is complementary to the fix quality. The fix quality desc
 
 
 
-### Section Position uncertainty 
+## Section Position uncertainty 
 
-Unlike IMU or lidar uncertainties, GPS position uncertainty is not only a fixed receiver characteristic. It must be estimated from the current fix quality and from the current satellite constellation geometry as seen by the receiver. This geometric effect is commonly represented by the `HDOP` value provided by `GGA` sentences: satellites well distributed across the sky generally lead to a low `HDOP`, while satellites clustered in the same region of the sky lead to a higher `HDOP`.
+Unlike IMU or lidar uncertainties, GPS position uncertainty is not only a fixed receiver characteristic. It must be estimated from the current fix quality and from the current satellite constellation geometry as seen by the receiver. This geometric effect is commonly represented by the `HDOP` (Horizontal Dilution Of Precision) value provided by `GGA` sentences: satellites well distributed across the sky generally lead to a low `HDOP`, while satellites clustered in the same region of the sky lead to a higher `HDOP`.
 
 `GPSReceiverEUREs` associates each supported fix quality with an equivalent user range error value. This receiver-dependent value can be combined with `HDOP` to estimate the horizontal position uncertainty:
 

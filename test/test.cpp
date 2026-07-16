@@ -13,7 +13,6 @@
 // limitations under the License.
 
 // std
-#include <iostream>
 #include <limits>
 #include <list>
 #include <string>
@@ -118,14 +117,6 @@ TEST(TestGPS, testDecodeGGASentence)
     EXPECT_NEAR(frame.latitude->toDouble(), 0.795153, 0.01);
     EXPECT_NEAR(frame.longitude->toDouble(), 0.0568524, 0.01);
 
-    std::cout << frame.latitude->getDegrees() << std::endl;
-    std::cout << frame.latitude->getMinutes() << std::endl;
-    std::cout << frame.latitude->getSeconds() << std::endl;
-
-    std::cout << romea::core::Latitude(0.795153).getDegrees() << std::endl;
-    std::cout << romea::core::Latitude(0.795153).getMinutes() << std::endl;
-    std::cout << romea::core::Latitude(0.795153).getSeconds() << std::endl;
-
     EXPECT_EQ(*frame.fixQuality, romea::core::FixQuality::DGPS_FIX);
     EXPECT_EQ(*frame.numberSatellitesUsedToComputeFix, 8);
     EXPECT_EQ(*frame.horizontalDilutionOfPrecision, 2.17);
@@ -136,10 +127,6 @@ TEST(TestGPS, testDecodeGGASentence)
       romea::core::NMEAParsing::extractSentenceId(ggaSentence),
       romea::core::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::core::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
-
-    std::cout << ggaSentence << std::endl;
-    std::cout << frame.toNMEA() << std::endl;
-    std::cout << frame << std::endl;
   }
 
   {
@@ -157,19 +144,11 @@ TEST(TestGPS, testDecodeGGASentence)
       romea::core::NMEAParsing::extractSentenceId(ggaSentence),
       romea::core::NMEAParsing::SentenceID::GGA);
     EXPECT_EQ(romea::core::GGAFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
-
-    std::cout << ggaSentence << std::endl;
-    std::cout << frame.toNMEA() << std::endl;
-    std::cout << frame << std::endl;
   }
 
   {
     std::string ggaSentence = "$GPGGA,091641.70,,,,,5,,00.0,,M,,M,01,*5E";
     romea::core::GGAFrame frame(ggaSentence);
-
-    std::cout << ggaSentence << std::endl;
-    std::cout << frame.toNMEA() << std::endl;
-    std::cout << frame << std::endl;
 
     EXPECT_EQ(frame.latitude.has_value(), false);
     EXPECT_EQ(frame.longitude.has_value(), false);
@@ -200,14 +179,13 @@ TEST(TestGPS, testDecodeRMCSentence)
     romea::core::NMEAParsing::extractSentenceId(rmcSentence),
     romea::core::NMEAParsing::SentenceID::RMC);
   EXPECT_EQ(romea::core::RMCFrame(frame.toNMEA()).toNMEA().compare(frame.toNMEA()), 0);
-
-  std::cout << rmcSentence << std::endl;
-  std::cout << frame.toNMEA() << std::endl;
-  std::cout << frame << std::endl;
-
   romea::core::TimePoint t = std::chrono::high_resolution_clock::now();
-  std::cout << "Fix date " << romea::core::NMEAParsing::timePointToFixDate(t) << std::endl;
-  std::cout << "Fix time " << romea::core::NMEAParsing::timePointToFixTime(t) << std::endl;
+  EXPECT_FALSE(
+    romea::core::NMEAParsing::fixDateToString(
+      romea::core::NMEAParsing::timePointToFixDate(t)).empty());
+  EXPECT_FALSE(
+    romea::core::NMEAParsing::fixTimeToString(
+      romea::core::NMEAParsing::timePointToFixTime(t)).empty());
 }
 
 TEST(TestGPS, testDecodeGSVSentence)
